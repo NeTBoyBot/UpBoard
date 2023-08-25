@@ -10,6 +10,7 @@ using static Newtonsoft.Json.JsonConvert;
 
 namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
 {
+    ///<inheritdoc cref="IAdvertisementService"/>
     public class AdvertisementService : IAdvertisementService
     {
         public readonly IAdvertisementRepository _adRepository;
@@ -24,6 +25,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             _logger = logger;
         }
 
+        ///<inheritdoc/>
         public async Task<Guid> CreateAdAsync(CreateAdvertisementRequest createAd, CancellationToken cancellation)
         {
             _logger.LogInformation($"Создание объявления {SerializeObject(createAd)}");
@@ -33,6 +35,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             return adId;
         }
 
+        ///<inheritdoc/>
         public async Task DeleteAsync(DeleteAdRequest request, CancellationToken cancellation)
         {
             _logger.LogInformation($"Удаление объявления под Id: {request.Id}");
@@ -40,6 +43,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             await _adRepository.DeleteAsync(request, cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<InfoAdResponse> EditAdAsync(UpdateAdRequest request, CancellationToken cancellation)
         {
             _logger.LogInformation($"Изменение объявления под Id: {request.Id}, {SerializeObject(request)}");
@@ -49,6 +53,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             return _mapper.Map<InfoAdResponse>(request);
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoAdResponse>> GetAdFiltered(string? name, Guid? subcategoryId)
         {
             _logger.LogInformation("Получение объявлений по фильтру");
@@ -64,6 +69,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             return await query.OrderBy(a => a.CreationDate).ToListAsync();
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoAdResponse>> GetAllForPage(int pageSize, int pageIndex)
         {
             _logger.LogInformation("Получение всех объявлений");
@@ -72,7 +78,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
                 .OrderBy(a => a.CreationDate).Skip(pageSize*pageIndex).Take(pageSize).ToListAsync();
         }
 
-
+        ///<inheritdoc/>
         public async Task<InfoAdResponse> GetByIdAsync(Guid id, CancellationToken cancellation)
         {
             _logger.LogInformation($"Получение объявления под Id: {id}");
@@ -81,7 +87,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
           
             return existingad;
         }
-
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoAdResponse>> GetAllUserAds(Guid userId, CancellationToken token)
         {
             _logger.LogInformation($"Получение всех объявлений пользователя под Id: {userId}");

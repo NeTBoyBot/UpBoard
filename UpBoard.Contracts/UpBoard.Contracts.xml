@@ -169,6 +169,51 @@
             ID Объявления
             </summary>
         </member>
+        <member name="P:Board.Contracts.File.CreateFileRequest.Name">
+            <summary>
+            Имя файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.CreateFileRequest.Data">
+            <summary>
+            Содержимое файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.CreateFileRequest.ContentType">
+            <summary>
+            Тип данных файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.InfoFileResponse.Id">
+            <summary>
+            Id файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.InfoFileResponse.Name">
+            <summary>
+            Имя файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.InfoFileResponse.Data">
+            <summary>
+            Содержимое файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.InfoFileResponse.ContentType">
+            <summary>
+            Тип данных файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.InfoFileResponse.Length">
+            <summary>
+            Размер файла
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.File.InfoFileResponse.CreationDate">
+            <summary>
+            Дата создания файла
+            </summary>
+        </member>
         <member name="P:Board.Contracts.User.EditUserRequest.Id">
             <summary>
             Id пользователя
@@ -352,6 +397,11 @@
         <member name="P:UpBoard.Contracts.FavoriteAd.DeleteFavoriteAdRequest.Id">
             <summary>
             Id объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.File.DeleteFileRequest.Id">
+            <summary>
+            Id файла
             </summary>
         </member>
         <member name="P:UpBoard.Contracts.User.DeleteUserRequest.Id">

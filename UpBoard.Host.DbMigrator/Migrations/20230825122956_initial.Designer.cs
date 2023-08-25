@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace UpBoard.Host.DbMigrator.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    [Migration("20230822143555_addfavoriteads")]
-    partial class addfavoriteads
+    [Migration("20230825122956_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

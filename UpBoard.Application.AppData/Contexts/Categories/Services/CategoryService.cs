@@ -12,6 +12,7 @@ using static Newtonsoft.Json.JsonConvert;
 
 namespace Doska.AppServices.Services.Ad
 {
+    ///<inheritdoc cref="ICategoryService"/>
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -30,6 +31,7 @@ namespace Doska.AppServices.Services.Ad
             _cache = cache;
         }
 
+        ///<inheritdoc/>
         public async Task<Guid> CreateCategoryAsync(CreateCategoryRequest request, CancellationToken cancellation)
         { 
 
@@ -40,6 +42,7 @@ namespace Doska.AppServices.Services.Ad
             return categoryId;
         }
 
+        ///<inheritdoc/>
         public async Task DeleteAsync(DeleteCategoryRequest request,CancellationToken cancellation)
         {
             _logger.LogInformation($"Удаление категории под Id: {request.Id}");
@@ -47,6 +50,7 @@ namespace Doska.AppServices.Services.Ad
             await _categoryRepository.DeleteAsync(request, cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<InfoCategoryResponse> EditCategoryAsync(UpdateCategoryRequest request, CancellationToken cancellation)
         {
             _logger.LogInformation($"Изменение имени категории под id {request.Id} на имя {request.CategoryName}");
@@ -56,6 +60,7 @@ namespace Doska.AppServices.Services.Ad
             return _mapper.Map<InfoCategoryResponse>(request);
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoCategoryResponse>> GetAll()
         {
             _logger.LogInformation($"Получение всех категорий");
@@ -64,6 +69,7 @@ namespace Doska.AppServices.Services.Ad
                 .OrderBy(a => a.Id).ToListAsync();
         }
 
+        ///<inheritdoc/>
         public async Task<InfoCategoryResponse> GetByIdAsync(Guid id, CancellationToken cancellation)
         {
             _logger.LogInformation($"Поиск объявления под id: {id}");
@@ -72,6 +78,7 @@ namespace Doska.AppServices.Services.Ad
             return _mapper.Map<InfoCategoryResponse>(existingCategory);
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoCategoryResponse>> GetAllChildCategories(Guid parentId)
         {
             _logger.LogInformation($"Получение всех категорий");

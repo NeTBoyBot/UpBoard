@@ -1,6 +1,7 @@
 using AutoMapper;
 using Board.Contracts.Ad;
 using Board.Contracts.User;
+using Board.Infrastucture.MapProfiles;
 using Doska.AppServices.MapProfile;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -93,9 +94,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-
-
 app.MapControllers();
 
 app.Run();
@@ -110,6 +108,7 @@ static MapperConfiguration GetMapperConfiguration()
         cfg.AddProfile<CommentMapProfile>();
         cfg.AddProfile<FavoriteAdMapProfile>();
         cfg.AddProfile<UserMapProfile>();
+        cfg.AddProfile<FileMapProfile>();
     });
     //configuration.AssertConfigurationIsValid();
     return configuration;

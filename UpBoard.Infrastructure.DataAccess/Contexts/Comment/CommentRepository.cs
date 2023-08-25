@@ -14,6 +14,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace Doska.DataAccess.Repositories
 {
+    ///<inheritdoc cref="ICommentRepository"/>
     public class CommentRepository : ICommentRepository
     {
         private readonly IRepository<Comment> _baseRepository;
@@ -25,6 +26,7 @@ namespace Doska.DataAccess.Repositories
             _mapper = mapper;
         }
 
+        ///<inheritdoc/>
         public Task<Guid> AddAsync(CreateCommentRequest model, CancellationToken cancellation)
         {
             var comment = _mapper.Map<Comment>(model);
@@ -34,6 +36,7 @@ namespace Doska.DataAccess.Repositories
             return Task.Run(()=> comment.Id);
         }
 
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteCommentRequest request, CancellationToken cancellation)
         {
             var comment = _mapper.Map<Comment>(request);
@@ -41,6 +44,7 @@ namespace Doska.DataAccess.Repositories
             return _baseRepository.DeleteAsync(comment,cancellation);
         }
 
+        ///<inheritdoc/>
         public Task EditCommentAsync(UpdateCommentRequest request, CancellationToken cancellation)
         {
             var comment = _mapper.Map<Comment>(request);
@@ -48,6 +52,7 @@ namespace Doska.DataAccess.Repositories
             return _baseRepository.UpdateAsync(comment,cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<InfoCommentResponse> FindById(Guid id, CancellationToken cancellation)
         {
             var comment = await _baseRepository.GetByIdAsync(id, cancellation);
@@ -55,6 +60,7 @@ namespace Doska.DataAccess.Repositories
             return _mapper.Map<InfoCommentResponse>(comment);
         }
 
+        ///<inheritdoc/>
         public async Task<IQueryable<InfoCommentResponse>> GetAll()
         {
             return (await _baseRepository.GetAll()).Select(c=>new InfoCommentResponse

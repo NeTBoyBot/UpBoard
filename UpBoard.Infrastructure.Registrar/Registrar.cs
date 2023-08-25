@@ -1,4 +1,5 @@
-﻿using Board.Infrastucture.DataAccess.Interfaces;
+﻿using Board.Infrastucture.DataAccess.Contexts.File;
+using Board.Infrastucture.DataAccess.Interfaces;
 using Board.Infrastucture.Repository;
 using Doska.AppServices.Services.Ad;
 using Doska.AppServices.Services.Categories;
@@ -11,6 +12,8 @@ using UpBoard.Application.AppData.Contexts.Categories.Repositories;
 using UpBoard.Application.AppData.Contexts.Comment.Repositories;
 using UpBoard.Application.AppData.Contexts.FavoriteAd.Repositories;
 using UpBoard.Application.AppData.Contexts.FavoriteAd.Services;
+using UpBoard.Application.AppData.Contexts.File.Repositories;
+using UpBoard.Application.AppData.Contexts.File.Services;
 using UpBoard.Application.AppData.Contexts.User.Repositories;
 using UpBoard.Application.AppData.Contexts.User.Services;
 using UpBoard.AppServices.Services.Comment;
@@ -45,6 +48,9 @@ namespace UpBoard.Infrastructure.Registrar
 
             services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<ICommentService, CommentService>();
+
+            services.AddTransient<IFileRepository, FileRepository>();
+            services.AddTransient<IFileService, FileService>();
 
             services.AddLogging();
 

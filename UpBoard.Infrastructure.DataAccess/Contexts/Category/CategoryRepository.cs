@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 
 namespace Doska.DataAccess.Repositories
 {
+    ///<inheritdoc cref="ICategoryRepository"/>
     public class CategoryRepository : ICategoryRepository
     {
         public readonly IRepository<Category> _baseRepository;
@@ -24,6 +25,7 @@ namespace Doska.DataAccess.Repositories
             _mapper = mapper;
         }
 
+        ///<inheritdoc/>
         public Task<Guid> AddAsync(CreateCategoryRequest model, CancellationToken cancellation)
         {
             var created = _mapper.Map<Category>(model);
@@ -31,23 +33,27 @@ namespace Doska.DataAccess.Repositories
             return Task.Run(()=> created.Id);
         }
 
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteCategoryRequest request, CancellationToken cancellation)
         {
             var deleted = _mapper.Map<Category>(request);
             return _baseRepository.DeleteAsync(deleted,cancellation);
         }
 
+        ///<inheritdoc/>
         public Task EditAdAsync(UpdateCategoryRequest request, CancellationToken cancellation)
         {
             return _baseRepository.UpdateAsync(_mapper.Map<Category>(request),cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<InfoCategoryResponse> FindById(Guid id, CancellationToken cancellation)
         {
             var model = await _baseRepository.GetByIdAsync(id, cancellation);
             return _mapper.Map<InfoCategoryResponse>(model);
         }
 
+        ///<inheritdoc/>
         public async Task<IQueryable<InfoCategoryResponse>> GetAll()
         {
             return (await _baseRepository.GetAll()).Select(c => new InfoCategoryResponse

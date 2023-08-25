@@ -12,13 +12,10 @@ namespace UpBoard.Domain
 {
     public class Advertisement : Entity
     {
-        [MaxLength(50)]
         public string Name { get; set; }
 
-        [MaxLength(500)]
         public string Description { get; set; }
 
-        [MinValue(0)]
         public decimal Price { get; set; }
 
         public AdStates.AdStates State { get; set; } = AdStates.AdStates.Moderated;

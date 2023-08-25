@@ -13,6 +13,7 @@ using UpBoard.Contracts.FavoriteAd;
 
 namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
 {
+    ///<inheritdoc cref="IFavoriteAdService"/>
     public class FavoriteAdService : IFavoriteAdService
     {
         public readonly IFavoriteAdRepository _favoriteadRepository;
@@ -26,6 +27,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
             _logger = logger;
         }
 
+        ///<inheritdoc/>
         public async Task<Guid> CreateFavoriteAdAsync(CreateFavoriteAdRequest createAd, CancellationToken cancellation)
         {
 
@@ -36,6 +38,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
             return adId;
         }
 
+        ///<inheritdoc/>
         public async Task DeleteAsync(DeleteFavoriteAdRequest request, CancellationToken cancellation)
         {
             _logger.LogInformation($"Удаление объявления под id {request.Id}");
@@ -43,6 +46,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
             await _favoriteadRepository.DeleteAsync(request, cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoFavoriteAdResponse>> GetAll()
         {
             _logger.LogInformation($"Получение всех избранных объявлений");
@@ -51,6 +55,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
                 .OrderBy(a => a.Id).ToListAsync();
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid userId, CancellationToken token)
         {
             _logger.LogInformation($"Получение всех избранных объявлений пользователя под id {userId}");
@@ -59,6 +64,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
                 .ToListAsync();
         }
 
+        ///<inheritdoc/>
         public async Task<InfoFavoriteAdResponse> GetByIdAsync(Guid id, CancellationToken cancellation)
         {
             _logger.LogInformation($"Получение избранного объявления под id {id}");

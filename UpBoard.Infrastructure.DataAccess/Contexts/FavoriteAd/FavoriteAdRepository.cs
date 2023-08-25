@@ -14,6 +14,7 @@ using System.Text.Json.Serialization.Metadata;
 
 namespace Doska.DataAccess.Repositories
 {
+    ///<inheritdoc cref="IFavoriteAdRepository"/>
     public class FavoriteAdRepository : IFavoriteAdRepository
     {
         private readonly IRepository<FavoriteAd> _baseRepository;
@@ -25,6 +26,7 @@ namespace Doska.DataAccess.Repositories
             _mapper = mapper;
         }
 
+        ///<inheritdoc/>
         public Task<Guid> AddAsync(CreateFavoriteAdRequest request, CancellationToken cancellation)
         {
             var model = _mapper.Map<FavoriteAd>(request);
@@ -34,18 +36,21 @@ namespace Doska.DataAccess.Repositories
             return Task.Run(() => model.Id);
         }
 
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteFavoriteAdRequest request, CancellationToken cancellation)
         {
             var model = _mapper.Map<FavoriteAd>(request);
             return _baseRepository.DeleteAsync(model,cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<InfoFavoriteAdResponse> FindById(Guid id, CancellationToken cancellation)
         {
             var model = await _baseRepository.GetByIdAsync(id, cancellation);
             return _mapper.Map<InfoFavoriteAdResponse>(model);
         }
 
+        ///<inheritdoc/>
         public async Task<IQueryable<InfoFavoriteAdResponse>> GetAll()
         {
             return (await _baseRepository.GetAll()).Select(a=>new InfoFavoriteAdResponse

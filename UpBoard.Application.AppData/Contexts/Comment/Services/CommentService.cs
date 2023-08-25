@@ -14,6 +14,7 @@ using UpBoard.Contracts.Comment;
 
 namespace UpBoard.AppServices.Services.Comment
 {
+    ///<inheritdoc cref="ICommentService"/>
     public class CommentService : ICommentService
     {
         private readonly IUserService _userService;
@@ -30,6 +31,7 @@ namespace UpBoard.AppServices.Services.Comment
             _userService = userService;
         }
 
+        ///<inheritdoc/>
         public async Task<Guid> CreateCommentAsync(CreateCommentRequest createComment,CancellationToken cancellation)
         {
             _logger.LogInformation($"Создание комментария");
@@ -39,6 +41,7 @@ namespace UpBoard.AppServices.Services.Comment
             return commentId;
         }
 
+        ///<inheritdoc/>
         public async Task DeleteAsync(DeleteCommentRequest request, CancellationToken cancellation)
         {
             _logger.LogInformation($"Удаление комментария под id {request.Id}");
@@ -46,6 +49,7 @@ namespace UpBoard.AppServices.Services.Comment
             await _commentRepository.DeleteAsync(request,cancellation);
         }
 
+        ///<inheritdoc/>
         public async Task<IReadOnlyCollection<InfoCommentResponse>> GetAll()
         {
             _logger.LogInformation($"Получение всех комментариев");
@@ -54,6 +58,7 @@ namespace UpBoard.AppServices.Services.Comment
                 .OrderBy(a => a.Id).ToListAsync();
         }
 
+        ///<inheritdoc/>
         public async Task<ICollection<InfoCommentResponse>> GetAllCommentsForUser(Guid userId, CancellationToken cancellation)
         {
             _logger.LogInformation($"Получение всех комментариев пользователя под id {userId}");
@@ -62,6 +67,7 @@ namespace UpBoard.AppServices.Services.Comment
                 .OrderBy(a => a.Id).ToListAsync();
         }
 
+        ///<inheritdoc/>
         public async Task<InfoCommentResponse> GetByIdAsync(Guid id, CancellationToken cancellation)
         {
             _logger.LogInformation($"Получение комментария под id {id}");
