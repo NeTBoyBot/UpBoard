@@ -5,7 +5,7 @@
 Backend:
 
 - Platform: .NET 6
-- Network: REST
+- Network: -
 - Database: Postgres SQL, Entity Framework Core
 - Other: -
 
