@@ -5,9 +5,9 @@
 Backend:
 
 - Platform: .NET 6
-- Network: REST, SignalR, RabbitMQ
+- Network: REST
 - Database: Postgres SQL, Entity Framework Core
-- Other: JWT,  Docker
+- Other: -
 
 ## Building sources
 
@@ -15,8 +15,6 @@ By default, apps run on the following ports:
 
 | Application           | Port |
 | --------------------- | ---- |
-| UpBoard.**Core**      | 5050 |
-| UpBoard.**Notifier** | None |
-| RabbitMQ              | None |
+| UpBoard.Host.**Api**      | 7091 |
 
 
