@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UpBoard.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Board.Contracts.Ad.CreateAdvertisementRequest">
+            <summary>
+            Создание объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.OwnerId">
+            <summary>
+            Id владельца объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.Name">
+            <summary>
+            Имя объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.Description">
+            <summary>
+            Описание объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.Price">
+            <summary>
+            Стоимость объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.CategoryId">
+            <summary>
+            ID Категории
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.Id">
+            <summary>
+            ID Объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.Name">
+            <summary>
+            Имя объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.Desc">
+            <summary>
+            Описание объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.Price">
+            <summary>
+            Стоимость объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.OwnerId">
+            <summary>
+            Владелец объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.CreationDate">
+            <summary>
+            Дата создания
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.CategoryId">
+            <summary>
+            Категория объявления
+            </summary>
+        </member>
+        <member name="T:Board.Contracts.Category.CreateCategoryRequest">
+            <summary>
+            Дто для создания категории
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Category.CreateCategoryRequest.CategoryName">
+            <summary>
+            Имя категории
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Category.CreateCategoryRequest.ParentId">
+            <summary>
+            ID Родительской категории
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Category.InfoCategoryResponse.Id">
+            <summary>
+            ID Категории
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Category.InfoCategoryResponse.CategoryName">
+            <summary>
+            Имя категории
+            </summary>
+        </member>
+        <member name="F:Board.Contracts.Category.InfoCategoryResponse.SubCategories">
+            <summary>
+            Коллекция под категорий
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Category.InfoCategoryResponse.ParentId">
+            <summary>
+            Родительская категория
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.CreateCommentRequest.UserId">
+            <summary>
+            ID Пользователя которому оставили отзыв
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.CreateCommentRequest.SenderId">
+            <summary>
+            ID Пользователя который оставил отзыв
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.CreateCommentRequest.Text">
+            <summary>
+            Содержимое отзыва
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.InfoCommentResponse.Id">
+            <summary>
+            ID Отзыва
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.InfoCommentResponse.SenderId">
+            <summary>
+            ID Пользователя оставившего отзыв
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.InfoCommentResponse.UserId">
+            <summary>
+            ID Пользователя которому оставили отзыв
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Comment.InfoCommentResponse.Text">
+            <summary>
+            Содержимое отзыва
+            </summary>
+        </member>
+        <member name="T:Board.Contracts.FavoriteAd.CreateFavoriteAdRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.FavoriteAd.CreateFavoriteAdRequest.UserId">
+            <summary>
+            ID пользователя добавившего объявление в избранные
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.FavoriteAd.CreateFavoriteAdRequest.AdvertisementId">
+            <summary>
+            ID Объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.FavoriteAd.InfoFavoriteAdResponse.Id">
+            <summary>
+            Id Избранного объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.FavoriteAd.InfoFavoriteAdResponse.UserId">
+            <summary>
+            ID Пользователя добавившего объявление в избранные
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.FavoriteAd.InfoFavoriteAdResponse.AdvertisementId">
+            <summary>
+            ID Объявления
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.EditUserRequest.Id">
+            <summary>
+            Id пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.EditUserRequest.Username">
+            <summary>
+            Имя пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.EditUserRequest.Region">
+            <summary>
+            Регион регистрации
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.EditUserRequest.PhoneNumber">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.EditUserRequest.Email">
+            <summary>
+            Почта пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.EditUserRequest.Password">
+            <summary>
+            Пароль пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.Id">
+            <summary>
+            ID Пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.UserName">
+            <summary>
+            Имя пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.Region">
+            <summary>
+            Регион регистрации
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.Phone">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.Email">
+            <summary>
+            Адрес электронной почты
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.CreationTime">
+            <summary>
+            Дата создания аккаунта
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.IsVerified">
+            <summary>
+            Является ли аккаунт пользователя подтверждённым
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.LoginUserRequest.Email">
+            <summary>
+            Адрес электронной почты
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.LoginUserRequest.Password">
+            <summary>
+            Пароль пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserRequest.Username">
+            <summary>
+            Имя пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserRequest.Password">
+            <summary>
+            Пароль пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserRequest.PhoneNumber">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserRequest.Email">
+            <summary>
+            Адрес электронной почты
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserResponse.Id">
+            <summary>
+            ID Пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserResponse.UserName">
+            <summary>
+            Имя пользователя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserResponse.CreationTime">
+            <summary>
+            Дата создания аккаунта
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.RegisterUserResponse.VerificationCode">
+            <summary>
+            Код для подтверждения аккаунта пользователя
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Ad.DeleteAdRequest.Id">
+            <summary>
+            Id объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.Id">
+            <summary>
+            Id объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.Name">
+            <summary>
+            Имя объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.Desc">
+            <summary>
+            Описание объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.Price">
+            <summary>
+            Стоимость объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.CategoryId">
+            <summary>
+            ID Категории
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Category.DeleteCategoryRequest.Id">
+            <summary>
+            Id категории
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Category.UpdateCategoryRequest.Id">
+            <summary>
+            ID Родительской категории
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Category.UpdateCategoryRequest.CategoryName">
+            <summary>
+            Имя категории
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Category.UpdateCategoryRequest.ParentId">
+            <summary>
+            ID Родительской категории
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Comment.DeleteCommentRequest.Id">
+            <summary>
+            Id комментария
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Comment.UpdateCommentRequest.Id">
+            <summary>
+            ID Комментария
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.Comment.UpdateCommentRequest.Text">
+            <summary>
+            Содержимое отзыва
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.FavoriteAd.DeleteFavoriteAdRequest.Id">
+            <summary>
+            Id объявления
+            </summary>
+        </member>
+        <member name="P:UpBoard.Contracts.User.DeleteUserRequest.Id">
+            <summary>
+            Id пользователя
+            </summary>
+        </member>
+    </members>
+</doc>

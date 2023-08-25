@@ -1,0 +1,73 @@
+﻿using AutoMapper;
+using Board.Contracts.Comment;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UpBoard.Domain;
+using UpBoard.Application.AppData.Contexts.Comment.Repositories;
+using UpBoard.Application.AppData.Contexts.User.Services;
+using UpBoard.Contracts.Comment;
+
+namespace UpBoard.AppServices.Services.Comment
+{
+    public class CommentService : ICommentService
+    {
+        private readonly IUserService _userService;
+        private readonly ICommentRepository _commentRepository;
+        private readonly IMapper _mapper;
+        private readonly ILogger<CommentService> _logger;
+
+        public CommentService(ICommentRepository commentRepository, IMapper mapper, ILogger<CommentService> logger,
+            IUserService userService)
+        {
+            _commentRepository = commentRepository;
+            _mapper = mapper;
+            _logger = logger;
+            _userService = userService;
+        }
+
+        public async Task<Guid> CreateCommentAsync(CreateCommentRequest createComment,CancellationToken cancellation)
+        {
+            _logger.LogInformation($"Создание комментария");
+
+            var commentId = await _commentRepository.AddAsync(createComment,cancellation);
+
+            return commentId;
+        }
+
+        public async Task DeleteAsync(DeleteCommentRequest request, CancellationToken cancellation)
+        {
+            _logger.LogInformation($"Удаление комментария под id {request.Id}");
+            
+            await _commentRepository.DeleteAsync(request,cancellation);
+        }
+
+        public async Task<IReadOnlyCollection<InfoCommentResponse>> GetAll()
+        {
+            _logger.LogInformation($"Получение всех комментариев");
+
+            return await (await _commentRepository.GetAll())
+                .OrderBy(a => a.Id).ToListAsync();
+        }
+
+        public async Task<ICollection<InfoCommentResponse>> GetAllCommentsForUser(Guid userId, CancellationToken cancellation)
+        {
+            _logger.LogInformation($"Получение всех комментариев пользователя под id {userId}");
+
+            return await (await _commentRepository.GetAll()).Where(a=>a.UserId == userId)
+                .OrderBy(a => a.Id).ToListAsync();
+        }
+
+        public async Task<InfoCommentResponse> GetByIdAsync(Guid id, CancellationToken cancellation)
+        {
+            _logger.LogInformation($"Получение комментария под id {id}");
+
+            var existingcomment = await _commentRepository.FindById(id,cancellation);
+            return _mapper.Map<InfoCommentResponse>(existingcomment);
+        }
+    }
+}

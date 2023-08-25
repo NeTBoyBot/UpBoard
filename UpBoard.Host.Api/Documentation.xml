@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UpBoard.Host.Api</name>
+    </assembly>
+    <members>
+        <member name="M:UpBoard.Host.Api.Controllers.AdvertisementController.GetAllForPage(System.Int32,System.Int32)">
+            <summary>
+            Получение всех объявлений для страницы
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.AdvertisementController.GetAdById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Получение объявления по Id
+            </summary>
+            <param name="id"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.AdvertisementController.CreateAd(Board.Contracts.Ad.CreateAdvertisementRequest,System.Threading.CancellationToken)">
+            <summary>
+            Создание объявления
+            </summary>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.AdvertisementController.UpdateCategory(UpBoard.Contracts.Ad.UpdateAdRequest,System.Threading.CancellationToken)">
+            <summary>
+            Обновление категории
+            </summary>
+            <param name="id"></param>
+            <param name="categoryname"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.AdvertisementController.DeleteAd(UpBoard.Contracts.Ad.DeleteAdRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удаление категории
+            </summary>
+            <param name="id"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UpBoard.Host.Api.Controllers.UserController">
+            <summary>
+            Контроллер для работы с пользователями
+            </summary>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.GetAll">
+            <summary>
+            Получение всех пользователей
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.UpdateCategory(Board.Contracts.User.EditUserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Обновление категории
+            </summary>
+            <param name="id"></param>
+            <param name="categoryname"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.DeleteAd(UpBoard.Contracts.User.DeleteUserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удаление категории
+            </summary>
+            <param name="id"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CategoryController.GetAll">
+            <summary>
+            Получение всех категорий
+            </summary>
+            <param name="take"></param>
+            <param name="skip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CategoryController.GetAllChildCategories(System.Guid)">
+            <summary>
+            Получение всех категорий
+            </summary>
+            <param name="take"></param>
+            <param name="skip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CategoryController.GetCategoryById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Получение категории по Id
+            </summary>
+            <param name="id"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CategoryController.CreateCategory(Board.Contracts.Category.CreateCategoryRequest,System.Threading.CancellationToken)">
+            <summary>
+            Создание категории
+            </summary>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CategoryController.UpdateCategory(UpBoard.Contracts.Category.UpdateCategoryRequest,System.Threading.CancellationToken)">
+            <summary>
+            Обновление категории
+            </summary>
+            <param name="id"></param>
+            <param name="categoryname"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CategoryController.DeleteAd(UpBoard.Contracts.Category.DeleteCategoryRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удаление категории
+            </summary>
+            <param name="id"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CommentController.GetAll">
+            <summary>
+            Получение всех комментариев
+            </summary>
+            <param name="take"></param>
+            <param name="skip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CommentController.GetCommentsForUser(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Получение всех комментариев для пользователя
+            </summary>
+            <param name="userId"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CommentController.CreateComment(Board.Contracts.Comment.CreateCommentRequest,System.Threading.CancellationToken)">
+            <summary>
+            Создание комментария
+            </summary>
+            <param name="request"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.CommentController.DeleteComment(UpBoard.Contracts.Comment.DeleteCommentRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удаление комментария
+            </summary>
+            <param name="id"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.FavoriteAdController.GetAll">
+            <summary>
+            Получение всех избранных объявлений
+            </summary>
+            <param name="take"></param>
+            <param name="skip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.FavoriteAdController.CreateAd(Board.Contracts.FavoriteAd.CreateFavoriteAdRequest,System.Threading.CancellationToken)">
+            <summary>
+            Добавить объявление в избранное
+            </summary>
+            <param name="request"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.FavoriteAdController.DeleteAd(UpBoard.Contracts.FavoriteAd.DeleteFavoriteAdRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удалить объявление из избранных
+            </summary>
+            <param name="id"></param>
+            <param name="request"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Doska.API.Controllers.FavoriteAdController.GetAllUserFavorites(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Получить все избранные объявления авторизованного пользователя
+            </summary>
+            <param name="take"></param>
+            <param name="skip"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
