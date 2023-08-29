@@ -20,8 +20,6 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получение всех избранных объявлений
         /// </summary>
-        /// <param name="take"></param>
-        /// <param name="skip"></param>
         /// <returns></returns>
         [HttpGet("/FavoriteAds")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.OK)]
@@ -35,8 +33,8 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Добавить объявление в избранное
         /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellation"></param>
+        /// <param name="request">Данные для создания избранного объявления</param>
+        /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         [HttpPost("/createFavoriteAd")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.Created)]
@@ -50,8 +48,7 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Удалить объявление из избранных
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="request"></param>
+        /// <param name="request">Данные для удаления избранного объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpDelete("/deleteFavoriteAd")]
@@ -66,8 +63,7 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получить все избранные объявления авторизованного пользователя
         /// </summary>
-        /// <param name="take"></param>
-        /// <param name="skip"></param>
+        /// <param name="id">Идентификатор пользователя</param>
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpGet("/allUserFavorites")]

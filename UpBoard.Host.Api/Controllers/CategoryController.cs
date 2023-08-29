@@ -20,8 +20,6 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получение всех категорий
         /// </summary>
-        /// <param name="take"></param>
-        /// <param name="skip"></param>
         /// <returns></returns>
         [HttpGet("/allCategories")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
@@ -35,8 +33,7 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получение всех категорий
         /// </summary>
-        /// <param name="take"></param>
-        /// <param name="skip"></param>
+        /// <param name="id">Идентификатор категории</param>
         /// <returns></returns>
         [HttpGet("/allChildCategories")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
@@ -50,8 +47,8 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получение категории по Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellation"></param>
+        /// <param name="id">Идентификатор категории</param>
+        /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         [HttpGet("/CategoryById")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
@@ -67,7 +64,8 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Создание категории
         /// </summary>
-        /// <param name="cancellation"></param>
+        /// <param name="request">Данные для создания категории</param>
+        /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         [HttpPost("/createCategory")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
@@ -82,8 +80,7 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Обновление категории
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="categoryname"></param>
+        /// <param name="request">Данные для изменения категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpPut("/updateCategory")]
@@ -99,7 +96,7 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Удаление категории
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="request">Данные для удаления категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpDelete("/deleteCategory")]

@@ -19,7 +19,6 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получение всех комментариев
         /// </summary>
-        /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
         [HttpGet("/allComments")]
@@ -34,8 +33,8 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Получение всех комментариев для пользователя
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="cancellation"></param>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         [HttpGet("/CommentsForUser")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.OK)]
@@ -49,8 +48,8 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Создание комментария
         /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellation"></param>
+        /// <param name="request">Данные для создания комментария</param>
+        /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         [HttpPost("/createComment")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.Created)]
@@ -65,8 +64,8 @@ namespace Doska.API.Controllers
         /// <summary>
         /// Удаление комментария
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellation"></param>
+        /// <param name="request">Данные для удаления комментария</param>
+        /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         [HttpDelete("/deleteComment")]
         [ProducesResponseType((int)HttpStatusCode.OK)]

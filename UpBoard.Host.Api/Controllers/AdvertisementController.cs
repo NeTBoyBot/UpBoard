@@ -65,8 +65,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <summary>
         /// Обновление категории
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="categoryname"></param>
+        /// <param name="request">Данные для создания категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpPut("/updateAd")]
@@ -82,7 +81,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <summary>
         /// Удаление категории
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="request">Данные для удаления категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpDelete("/deleteAd")]
@@ -90,7 +89,6 @@ namespace UpBoard.Host.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery] DeleteAdRequest request, CancellationToken cancellation)
         {
-
             await _advertisementService.DeleteAsync(request, cancellation);
             return Ok();
         }

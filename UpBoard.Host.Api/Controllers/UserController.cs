@@ -34,6 +34,12 @@ namespace UpBoard.Host.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
+        /// <param name="request">Данные для создания пользователя</param>
+        /// <param name="cancellation"></param>
+        /// <returns></returns>
         [HttpPost("Register")]
         [ProducesResponseType(typeof(IReadOnlyCollection<Guid>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> RegisterUser([FromQuery]RegisterUserRequest request,CancellationToken cancellation)
@@ -46,8 +52,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <summary>
         /// Обновление категории
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="categoryname"></param>
+        /// <param name="request">Данные для изменения пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpPut("/updateUser")]
@@ -63,7 +68,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <summary>
         /// Удаление категории
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="request">Данные для удаления пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpDelete("/deleteUser")]
