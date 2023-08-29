@@ -51,10 +51,9 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoUserResponse>> GetAll()
+        public async Task<IQueryable<InfoUserResponse>> GetAll()
         {
-            var result = await (await _userRepository.GetAll())
-                .OrderBy(a => a.Id).ToListAsync();
+            var result = await _userRepository.GetAll();
 
             _logger.LogInformation($"Получение всех пользователей");
 

@@ -50,21 +50,19 @@ namespace UpBoard.AppServices.Services.Comment
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoCommentResponse>> GetAll()
+        public async Task<IQueryable<InfoCommentResponse>> GetAll()
         {
             _logger.LogInformation($"Получение всех комментариев");
 
-            return await (await _commentRepository.GetAll())
-                .OrderBy(a => a.Id).ToListAsync();
+            return (await _commentRepository.GetAll());
         }
 
         ///<inheritdoc/>
-        public async Task<ICollection<InfoCommentResponse>> GetAllCommentsForUser(Guid userId, CancellationToken cancellation)
+        public async Task<IQueryable<InfoCommentResponse>> GetAllCommentsForUser(Guid userId, CancellationToken cancellation)
         {
             _logger.LogInformation($"Получение всех комментариев пользователя под id {userId}");
 
-            return await (await _commentRepository.GetAll()).Where(a=>a.UserId == userId)
-                .OrderBy(a => a.Id).ToListAsync();
+            return (await _commentRepository.GetAll()).Where(a => a.UserId == userId);
         }
 
         ///<inheritdoc/>

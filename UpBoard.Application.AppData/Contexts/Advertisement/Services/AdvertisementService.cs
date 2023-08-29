@@ -54,7 +54,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoAdResponse>> GetAdFiltered(string? name, Guid? subcategoryId)
+        public async Task<IQueryable<InfoAdResponse>> GetAdFiltered(string? name, Guid? subcategoryId)
         {
             _logger.LogInformation("Получение объявлений по фильтру");
 
@@ -66,16 +66,16 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             if (subcategoryId != null && subcategoryId != Guid.Empty)
                 query = query.Where(q => q.CategoryId == subcategoryId);
 
-            return await query.OrderBy(a => a.CreationDate).ToListAsync();
+            return query;
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoAdResponse>> GetAllForPage(int pageSize, int pageIndex)
+        public async Task<IQueryable<InfoAdResponse>> GetAllForPage(int pageSize, int pageIndex)
         {
             _logger.LogInformation("Получение всех объявлений");
 
-            return await (await _adRepository.GetAll())
-                .OrderBy(a => a.CreationDate).Skip(pageSize*pageIndex).Take(pageSize).ToListAsync();
+            return (await _adRepository.GetAll())
+                .Skip(pageSize*pageIndex).Take(pageSize);
         }
 
         ///<inheritdoc/>
@@ -88,12 +88,11 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
             return existingad;
         }
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoAdResponse>> GetAllUserAds(Guid userId, CancellationToken token)
+        public async Task<IQueryable<InfoAdResponse>> GetAllUserAds(Guid userId, CancellationToken token)
         {
             _logger.LogInformation($"Получение всех объявлений пользователя под Id: {userId}");
 
-            return await (await _adRepository.GetAll()).Where(a => a.OwnerId == userId)
-                .ToListAsync();
+            return (await _adRepository.GetAll()).Where(a => a.OwnerId == userId);
         }
     }
 }

@@ -56,12 +56,7 @@ namespace Doska.DataAccess.Repositories
         ///<inheritdoc/>
         public async Task<IQueryable<InfoCategoryResponse>> GetAll()
         {
-            return (await _baseRepository.GetAll()).Select(c => new InfoCategoryResponse
-            {
-                Id = c.Id,
-                CategoryName = c.CategoryName,
-                ParentId = c.ParentId
-            }).AsQueryable();
+            return (await _baseRepository.GetAll()).Select(c => _mapper.Map<InfoCategoryResponse>(c));
         }
     }
 }

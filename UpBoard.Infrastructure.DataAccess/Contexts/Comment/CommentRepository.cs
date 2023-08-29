@@ -63,13 +63,7 @@ namespace Doska.DataAccess.Repositories
         ///<inheritdoc/>
         public async Task<IQueryable<InfoCommentResponse>> GetAll()
         {
-            return (await _baseRepository.GetAll()).Select(c=>new InfoCommentResponse
-            {
-                Id = c.Id,
-                SenderId = c.SenderId,
-                Text = c.Text,
-                UserId = c.UserId
-            }).AsQueryable();
+            return (await _baseRepository.GetAll()).Select(c=>_mapper.Map<InfoCommentResponse>(c));
         }
     }
 }

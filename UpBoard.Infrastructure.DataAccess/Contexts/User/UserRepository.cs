@@ -54,15 +54,7 @@ namespace Doska.DataAccess.Repositories
         ///<inheritdoc/>
         public async Task<IQueryable<InfoUserResponse>> GetAll()
         {
-            return (await _baseRepository.GetAll()).Select(u=>new InfoUserResponse
-            {
-                CreationTime = u.Registrationdate,
-                Email = u.Email,
-                Id = u.Id,
-                IsVerified = u.UserState == UpBoard.Domain.UserStates.UserStates.Verified,
-                Phone = u.PhoneNumber,
-                UserName = u.Username
-            });
+            return (await _baseRepository.GetAll()).Select(u=>_mapper.Map< InfoUserResponse>(u));
         }
     }
 }

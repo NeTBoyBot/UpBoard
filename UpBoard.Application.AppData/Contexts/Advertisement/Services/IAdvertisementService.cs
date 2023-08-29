@@ -33,7 +33,7 @@ namespace Doska.AppServices.Services.Ad
         /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoAdResponse>> GetAllForPage(int pageSize, int pageIndex);
+        Task<IQueryable<InfoAdResponse>> GetAllForPage(int pageSize, int pageIndex);
 
         /// <summary>
         /// Удаление объявления
@@ -58,13 +58,13 @@ namespace Doska.AppServices.Services.Ad
         /// <param name="name"></param>
         /// <param name="subcategoryId"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoAdResponse>> GetAdFiltered(string? name, Guid? subcategoryId);
+        Task<IQueryable<InfoAdResponse>> GetAdFiltered(string? name, Guid? subcategoryId);
 
         /// <summary>
         /// Получение всех объявлений авторизованного пользователя
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoAdResponse>> GetAllUserAds(Guid userId,CancellationToken token);
+        Task<IQueryable<InfoAdResponse>> GetAllUserAds(Guid userId,CancellationToken token);
     }
 }

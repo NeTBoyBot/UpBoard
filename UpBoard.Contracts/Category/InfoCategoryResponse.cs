@@ -21,7 +21,7 @@ namespace Board.Contracts.Category
         /// <summary>
         /// Коллекция под категорий
         /// </summary>
-        public ICollection<InfoCategoryResponse> SubCategories;
+        public ICollection<InfoCategoryResponse> SubCategories { get; set; }
 
 #nullable enable
         /// <summary>

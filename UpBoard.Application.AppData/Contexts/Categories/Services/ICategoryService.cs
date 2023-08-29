@@ -32,7 +32,7 @@ namespace Doska.AppServices.Services.Categories
         /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoCategoryResponse>> GetAll();
+        Task<IQueryable<InfoCategoryResponse>> GetAll();
 
         /// <summary>
         /// Получение всех категорий
@@ -40,7 +40,7 @@ namespace Doska.AppServices.Services.Categories
         /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoCategoryResponse>> GetAllChildCategories(Guid parentId);
+        Task<IQueryable<InfoCategoryResponse>> GetAllChildCategories(Guid parentId);
 
         /// <summary>
         /// Удаление категории

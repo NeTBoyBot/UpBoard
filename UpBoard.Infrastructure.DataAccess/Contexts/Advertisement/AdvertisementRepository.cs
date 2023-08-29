@@ -61,16 +61,7 @@ namespace UpBoard.Infrastructure.DataAccess.Contexts.Advertisement
         ///<inheritdoc/>
         public async Task<IQueryable<InfoAdResponse>> GetAll()
         {
-            return (await _baseRepository.GetAll()).Select(a=>new InfoAdResponse
-            {
-                CategoryId = a.CategoryId,
-                CreationDate = a.CreationDate,
-                Desc = a.Description,
-                Id = a.Id,
-                Name = a.Name,
-                OwnerId = a.OwnerId,
-                Price = a.Price
-            });
+            return (await _baseRepository.GetAll()).Select(a=>_mapper.Map<InfoAdResponse>(a));
         }
     }
 }

@@ -47,21 +47,19 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoFavoriteAdResponse>> GetAll()
+        public async Task<IQueryable<InfoFavoriteAdResponse>> GetAll()
         {
             _logger.LogInformation($"Получение всех избранных объявлений");
 
-            return await (await _favoriteadRepository.GetAll())
-                .OrderBy(a => a.Id).ToListAsync();
+            return (await _favoriteadRepository.GetAll());
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid userId, CancellationToken token)
+        public async Task<IQueryable<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid userId, CancellationToken token)
         {
             _logger.LogInformation($"Получение всех избранных объявлений пользователя под id {userId}");
 
-            return await (await _favoriteadRepository.GetAll()).Where(a => a.UserId == userId)
-                .ToListAsync();
+            return (await _favoriteadRepository.GetAll()).Where(a => a.UserId == userId);
         }
 
         ///<inheritdoc/>

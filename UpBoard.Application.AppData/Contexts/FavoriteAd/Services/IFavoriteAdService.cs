@@ -27,7 +27,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
         /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoFavoriteAdResponse>> GetAll();
+        Task<IQueryable<InfoFavoriteAdResponse>> GetAll();
 
         /// <summary>
         /// Удаление объявления из избранных
@@ -44,6 +44,6 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
         /// <param name="skip"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid id, CancellationToken token);
+        Task<IQueryable<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid id, CancellationToken token);
     }
 }

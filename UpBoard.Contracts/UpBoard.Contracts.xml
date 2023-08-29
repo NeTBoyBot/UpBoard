@@ -44,7 +44,7 @@
             Имя объявления
             </summary>
         </member>
-        <member name="P:Board.Contracts.Ad.InfoAdResponse.Desc">
+        <member name="P:Board.Contracts.Ad.InfoAdResponse.Description">
             <summary>
             Описание объявления
             </summary>
@@ -94,7 +94,7 @@
             Имя категории
             </summary>
         </member>
-        <member name="F:Board.Contracts.Category.InfoCategoryResponse.SubCategories">
+        <member name="P:Board.Contracts.Category.InfoCategoryResponse.SubCategories">
             <summary>
             Коллекция под категорий
             </summary>

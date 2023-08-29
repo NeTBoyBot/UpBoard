@@ -53,13 +53,7 @@ namespace Doska.DataAccess.Repositories
         ///<inheritdoc/>
         public async Task<IQueryable<InfoFavoriteAdResponse>> GetAll()
         {
-            return (await _baseRepository.GetAll()).Select(a=>new InfoFavoriteAdResponse
-            {
-                AdvertisementId = a.AdvertisementId,
-                Id = a.Id,
-                UserId = a.UserId,
-                
-            }).AsQueryable();
+            return (await _baseRepository.GetAll()).Select(a=>_mapper.Map<InfoFavoriteAdResponse>(a));
         }
     }
 }

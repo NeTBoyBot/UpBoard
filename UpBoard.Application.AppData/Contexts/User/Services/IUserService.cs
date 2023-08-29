@@ -27,7 +27,7 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
         /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoUserResponse>> GetAll();
+        Task<IQueryable<InfoUserResponse>> GetAll();
 
         /// <summary>
         /// Удаление пользователя по id

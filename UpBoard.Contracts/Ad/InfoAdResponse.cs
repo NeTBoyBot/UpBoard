@@ -23,7 +23,7 @@ namespace Board.Contracts.Ad
         /// <summary>
         /// Описание объявления
         /// </summary>
-        public string Desc { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Стоимость объявления

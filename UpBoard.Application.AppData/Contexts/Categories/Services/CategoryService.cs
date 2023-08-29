@@ -61,12 +61,11 @@ namespace Doska.AppServices.Services.Ad
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoCategoryResponse>> GetAll()
+        public async Task<IQueryable<InfoCategoryResponse>> GetAll()
         {
             _logger.LogInformation($"Получение всех категорий");
 
-            return await (await _categoryRepository.GetAll())
-                .OrderBy(a => a.Id).ToListAsync();
+            return (await _categoryRepository.GetAll());
         }
 
         ///<inheritdoc/>
@@ -79,12 +78,12 @@ namespace Doska.AppServices.Services.Ad
         }
 
         ///<inheritdoc/>
-        public async Task<IReadOnlyCollection<InfoCategoryResponse>> GetAllChildCategories(Guid parentId)
+        public async Task<IQueryable<InfoCategoryResponse>> GetAllChildCategories(Guid parentId)
         {
             _logger.LogInformation($"Получение всех категорий");
 
-            return await (await _categoryRepository.GetAll())
-                .Where(c => c.ParentId == parentId).OrderBy(a => a.Id).ToListAsync();
+            return (await _categoryRepository.GetAll())
+                .Where(c => c.ParentId == parentId);
         }
     }
 }

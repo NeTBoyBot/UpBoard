@@ -24,7 +24,7 @@ namespace UpBoard.AppServices.Services.Comment
         /// <param name="userId"></param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        Task<ICollection<InfoCommentResponse>> GetAllCommentsForUser(Guid userId, CancellationToken cancellation);
+        Task<IQueryable<InfoCommentResponse>> GetAllCommentsForUser(Guid userId, CancellationToken cancellation);
 
         /// <summary>
         /// Создание комментария
@@ -40,7 +40,7 @@ namespace UpBoard.AppServices.Services.Comment
         /// <param name="take"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<InfoCommentResponse>> GetAll();
+        Task<IQueryable<InfoCommentResponse>> GetAll();
 
         /// <summary>
         /// Удаление комментария
