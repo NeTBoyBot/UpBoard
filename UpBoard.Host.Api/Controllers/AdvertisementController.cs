@@ -55,7 +55,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <returns></returns>
         [HttpPost("/createAd")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> CreateAd([FromQuery] CreateAdvertisementRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateAd([FromBody] CreateAdvertisementRequest request, CancellationToken cancellation)
         {
             var result = await _advertisementService.CreateAdAsync(request, cancellation);
 

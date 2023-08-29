@@ -10,61 +10,67 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using UpBoard.Infrastructure.Registrar;
 
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
-
-builder.Services.AddServices();
-
-#region Authentication & Authorization
-
-builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(
-    options =>
-    {
-        var secretKey = builder.Configuration["Jwt:Key"];
-
-        options.RequireHttpsMetadata = false;
-        options.SaveToken = true;
-        options.TokenValidationParameters = new TokenValidationParameters()
-        {
-            ValidateActor = false,
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
-        };
-    });
-
-builder.Services.AddAuthorization();
-
-#endregion
-
-builder.Services.AddSwaggerGen(options =>
+namespace UpBoard.Host.Api
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "UpBoard Api", Version = "V1" });
-    options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
-        $"{typeof(InfoUserResponse).Assembly.GetName().Name}.xml")));
-    options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, "Documentation.xml")));
-
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    public class Program
     {
-        Description = @"JWT Authorization header using the Bearer scheme.  
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+
+            builder.Services.AddServices();
+
+            #region Authentication & Authorization
+
+            builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(
+                options =>
+                {
+                    var secretKey = builder.Configuration["Jwt:Key"];
+
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateActor = false,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+                    };
+                });
+
+            builder.Services.AddAuthorization();
+
+            #endregion
+
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "UpBoard Api", Version = "V1" });
+                options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
+                    $"{typeof(InfoUserResponse).Assembly.GetName().Name}.xml")));
+                options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, "Documentation.xml")));
+
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"JWT Authorization header using the Bearer scheme.  
                         Enter 'Bearer' [space] and then your token in the text input below.
                         Example: 'Bearer secretKey'",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = JwtBearerDefaults.AuthenticationScheme
-    });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
@@ -81,35 +87,39 @@ builder.Services.AddSwaggerGen(options =>
             new List<string>()
         }
     });
-});
+            });
 
 
-using var app = builder.Build();
+            using var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
-app.MapControllers();
+            app.MapControllers();
 
-app.Run();
+            app.Run();
 
-static MapperConfiguration GetMapperConfiguration()
-{
-    var configuration = new MapperConfiguration(cfg =>
-    {
-        cfg.AddProfile<CategoryMapProfile>();
-        cfg.AddProfile<AdvertisementMapProfile>();
-        cfg.AddProfile<CategoryMapProfile>();
-        cfg.AddProfile<CommentMapProfile>();
-        cfg.AddProfile<FavoriteAdMapProfile>();
-        cfg.AddProfile<UserMapProfile>();
-        cfg.AddProfile<FileMapProfile>();
-    });
-    //configuration.AssertConfigurationIsValid();
-    return configuration;
+            static MapperConfiguration GetMapperConfiguration()
+            {
+                var configuration = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile<CategoryMapProfile>();
+                    cfg.AddProfile<AdvertisementMapProfile>();
+                    cfg.AddProfile<CategoryMapProfile>();
+                    cfg.AddProfile<CommentMapProfile>();
+                    cfg.AddProfile<FavoriteAdMapProfile>();
+                    cfg.AddProfile<UserMapProfile>();
+                    cfg.AddProfile<FileMapProfile>();
+                });
+                //configuration.AssertConfigurationIsValid();
+                return configuration;
+            }
+
+        }
+    }
 }
