@@ -55,7 +55,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для изменения пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("/updateUser")]
+        [HttpPut("/update-User")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoUserResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory([FromQuery]EditUserRequest request, CancellationToken cancellation)
         {
@@ -71,7 +71,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для удаления пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteUser")]
+        [HttpDelete("/delete-User")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery]DeleteUserRequest request, CancellationToken cancellation)

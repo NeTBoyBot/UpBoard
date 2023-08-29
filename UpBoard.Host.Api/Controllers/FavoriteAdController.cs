@@ -21,7 +21,7 @@ namespace Doska.API.Controllers
         /// Получение всех избранных объявлений
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/FavoriteAds")]
+        [HttpGet("/Favorite-Ads")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -36,7 +36,7 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для создания избранного объявления</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpPost("/createFavoriteAd")]
+        [HttpPost("/create-Favorite-Ad")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> CreateAd([FromQuery]CreateFavoriteAdRequest request, CancellationToken cancellation)
         {
@@ -51,7 +51,7 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для удаления избранного объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteFavoriteAd")]
+        [HttpDelete("/delete-Favorite-Ad")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery]DeleteFavoriteAdRequest request, CancellationToken cancellation)
@@ -66,7 +66,7 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор пользователя</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        [HttpGet("/allUserFavorites")]
+        [HttpGet("/all-User-Favorites")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllUserFavorites(Guid id, CancellationToken token)
         {

@@ -23,7 +23,7 @@ namespace UpBoard.Host.Api.Controllers
         /// Получение всех объявлений для страницы
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/allAdsForPage")]
+        [HttpGet("/all-Ads-For-Page")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllForPage(int pageSize, int pageIndex)
         {
@@ -39,7 +39,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="id"></param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpGet("/AdById")]
+        [HttpGet("/Ad-By-Id")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAdById(Guid id, CancellationToken cancellation)
         {
@@ -53,7 +53,7 @@ namespace UpBoard.Host.Api.Controllers
         /// </summary>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPost("/createAd")]
+        [HttpPost("/create-Ad")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateAd([FromQuery] CreateAdvertisementRequest request, CancellationToken cancellation)
         {
@@ -68,7 +68,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для создания категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("/updateAd")]
+        [HttpPut("/update-Ad")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory([FromQuery] UpdateAdRequest request, CancellationToken cancellation)
         {
@@ -84,7 +84,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для удаления категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteAd")]
+        [HttpDelete("/delete-Ad")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery] DeleteAdRequest request, CancellationToken cancellation)

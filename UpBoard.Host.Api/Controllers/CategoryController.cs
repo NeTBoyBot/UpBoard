@@ -21,7 +21,7 @@ namespace Doska.API.Controllers
         /// Получение всех категорий
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/allCategories")]
+        [HttpGet("/all-Categories")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -35,7 +35,7 @@ namespace Doska.API.Controllers
         /// </summary>
         /// <param name="id">Идентификатор категории</param>
         /// <returns></returns>
-        [HttpGet("/allChildCategories")]
+        [HttpGet("/all-Child-Categories")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllChildCategories(Guid id)
         {
@@ -50,7 +50,7 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор категории</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("/CategoryById")]
+        [HttpGet("/Category-By-Id")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCategoryById(Guid id,CancellationToken cancellation)
         {
@@ -67,7 +67,7 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для создания категории</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpPost("/createCategory")]
+        [HttpPost("/create-Category")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateCategory([FromQuery]CreateCategoryRequest request, CancellationToken cancellation)
         {
@@ -83,7 +83,7 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для изменения категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("/updateCategory")]
+        [HttpPut("/update-Category")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryRequest request, CancellationToken cancellation)
         {
@@ -99,7 +99,7 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для удаления категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteCategory")]
+        [HttpDelete("/delete-Category")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd(DeleteCategoryRequest request, CancellationToken cancellation)

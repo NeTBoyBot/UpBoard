@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpBoard.Host.DbMigrator", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{1D373532-5A3D-4AAB-8C9E-82A61F0DC5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpBoard.Clients", "UpBoard.Clients\UpBoard.Clients.csproj", "{7D587542-CDCC-4C96-9B7C-7D64E5150F3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpBoard.Clients", "UpBoard.Clients\UpBoard.Clients.csproj", "{7D587542-CDCC-4C96-9B7C-7D64E5150F3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
