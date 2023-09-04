@@ -8,6 +8,12 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["UpBoard.Host.Api/UpBoard.Host.Api.csproj", "UpBoard.Host.Api/"]
+COPY ["UpBoard.Infrastructure.Registrar/UpBoard.Infrastructure.Registrar.csproj", "UpBoard.Infrastructure.Registrar/"]
+COPY ["UpBoard.Infrastructure.DataAccess/UpBoard.Infrastructure.DataAccess.csproj", "UpBoard.Infrastructure.DataAccess/"]
+COPY ["UpBoard.Application.AppData/UpBoard.Application.AppData.csproj", "UpBoard.Application.AppData/"]
+COPY ["UpBoard.Contracts/UpBoard.Contracts.csproj", "UpBoard.Contracts/"]
+COPY ["UpBoard.Domain/UpBoard.Domain.csproj", "UpBoard.Domain/"]
+COPY ["UpBoard.Infrastructure/UpBoard.Infrastructure.csproj", "UpBoard.Infrastructure/"]
 RUN dotnet restore "UpBoard.Host.Api/UpBoard.Host.Api.csproj"
 COPY . .
 WORKDIR "/src/UpBoard.Host.Api"

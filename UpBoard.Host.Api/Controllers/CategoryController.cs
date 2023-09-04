@@ -69,7 +69,7 @@ namespace Doska.API.Controllers
         /// <returns></returns>
         [HttpPost("/createCategory")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> CreateCategory([FromQuery]CreateCategoryRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateCategory([FromBody]CreateCategoryRequest request, CancellationToken cancellation)
         {
 
             var result = await _categoryService.CreateCategoryAsync(request,cancellation);

@@ -5,12 +5,13 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Board.Api.Tests;
 using Board.Contracts.Ad;
 using Newtonsoft.Json;
 using UpBoard.Domain;
 using Xunit;
 
-namespace Board.Api.Tests
+namespace UpBoard.Api.Tests.Tests
 {
     public class AdvertTests : IClassFixture<BoardWebApplicationFactory>
     {
@@ -32,7 +33,7 @@ namespace Board.Api.Tests
             var response = await httpClient.GetAsync($"/AdById?id={id}");
 
             // Assert
-            
+
             Assert.NotNull(response);
 
             var result = await response.Content.ReadFromJsonAsync<InfoAdResponse>();
@@ -42,6 +43,24 @@ namespace Board.Api.Tests
             Assert.Equal("test_advert_name", result!.Name);
             Assert.Equal("test_desc", result.Description);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+
+        [Fact]
+        public async Task Advert_GetById_Fail()
+        {
+            // Arrange
+            var httpClient = _webApplicationFactory.CreateClient();
+            var id = Guid.Empty;
+
+            // Act
+            var response = await httpClient.GetAsync($"/AdById?id={id}");
+
+            // Assert
+
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+
+
         }
 
         [Fact]
@@ -67,10 +86,8 @@ namespace Board.Api.Tests
             Assert.NotNull(response);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-            // полчить из ответа id созданной сущности
             var id = await response.Content.ReadFromJsonAsync<Guid>();
 
-            // получить созданную сущность из тестовой БД
             await using var dbContext = _webApplicationFactory.CreateDbContext();
             var advert = dbContext.Find<Advertisement>(id);
 

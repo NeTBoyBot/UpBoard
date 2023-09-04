@@ -10,6 +10,7 @@ using Board.Contracts.Category;
 using AutoMapper;
 using UpBoard.Contracts.Category;
 using System.Net.Http.Headers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Doska.DataAccess.Repositories
 {
@@ -56,7 +57,9 @@ namespace Doska.DataAccess.Repositories
         ///<inheritdoc/>
         public async Task<IQueryable<InfoCategoryResponse>> GetAll()
         {
-            return (await _baseRepository.GetAll()).Select(c => _mapper.Map<InfoCategoryResponse>(c));
+            return (await _baseRepository.GetAll())
+                .Include(c=>c.SubCategories)
+                .Select(c => _mapper.Map<InfoCategoryResponse>(c));
         }
     }
 }
