@@ -40,7 +40,7 @@ namespace UpBoard.Host.Api
                     options.SaveToken = true;
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        ValidateActor = false,
+                        //ValidateActor = true,
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true,
@@ -50,6 +50,8 @@ namespace UpBoard.Host.Api
                 });
 
             builder.Services.AddAuthorization();
+
+           
 
             #endregion
 
@@ -97,6 +99,10 @@ namespace UpBoard.Host.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseHttpsRedirection();
 

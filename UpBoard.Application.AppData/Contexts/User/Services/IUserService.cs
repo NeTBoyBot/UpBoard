@@ -1,4 +1,11 @@
-﻿using Board.Contracts.User;
+﻿using Board.Contracts.File;
+using Board.Contracts.User;
+using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using UpBoard.Application.AppData.Contexts.User.Repositories;
 using UpBoard.Contracts.User;
 
 namespace UpBoard.Application.AppData.Contexts.User.Services
@@ -46,6 +53,10 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
         /// <returns></returns>
         Task<InfoUserResponse> EditUserAsync(EditUserRequest request, CancellationToken cancellation);
 
-       
+        Task<InfoUserResponse> GetCurrentUser(CancellationToken cancellation);
+
+        Task<string> Login(LoginUserRequest LoginUserRequest, CancellationToken cancellationToken);
+        
+
     }
 }

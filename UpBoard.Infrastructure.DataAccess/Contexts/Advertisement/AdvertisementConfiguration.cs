@@ -16,6 +16,7 @@ namespace UpBoard.Infrastructure.DataAccess.Contexts.Advertisement
             builder.Property(a=>a.Description).HasMaxLength(256).IsRequired();
             builder.Property(a => a.Name).HasMaxLength(50).IsRequired();
             builder.Property(a => a.Price).IsRequired();
+            builder.HasOne(ad => ad.Category).WithMany(c => c.Advertisements).HasForeignKey(c => c.Id);
         }
     }
 }

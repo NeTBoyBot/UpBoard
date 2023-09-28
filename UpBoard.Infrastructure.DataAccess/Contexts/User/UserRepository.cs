@@ -5,6 +5,7 @@ using UpBoard.Application.AppData.Contexts.User.Repositories;
 using Board.Contracts.User;
 using AutoMapper;
 using UpBoard.Contracts.User;
+using System.Linq.Expressions;
 
 namespace Doska.DataAccess.Repositories
 {
@@ -47,7 +48,7 @@ namespace Doska.DataAccess.Repositories
         ///<inheritdoc/>
         public async Task<InfoUserResponse> FindById(Guid id, CancellationToken cancellation)
         {
-            var user = (await _baseRepository.GetAll()).Where(i => i.Id == id).FirstOrDefaultAsync();
+            var user = await (await _baseRepository.GetAll()).Where(i => i.Id == id).FirstOrDefaultAsync();
             return _mapper.Map<InfoUserResponse>(user);
         }
 

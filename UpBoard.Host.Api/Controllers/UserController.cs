@@ -81,5 +81,31 @@ namespace UpBoard.Host.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Логин пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="Canctoken"></param>
+        /// <returns></returns>
+        [HttpPost("/Login")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> Login(LoginUserRequest request, CancellationToken Canctoken)
+        {
+            var token = await _userService.Login(request, Canctoken);
+            return Created("", token);
+        }
+        /// <summary>
+        /// Получение авторизованного пользователя
+        /// </summary>
+        /// <param name="token">Токен отмены</param>
+        /// <returns>Информация об авторизованном пользователе</returns>
+        [HttpGet("/CurrentUser")]
+        [ProducesResponseType(typeof(IReadOnlyCollection<InfoUserResponse>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetCurentUser(CancellationToken token)
+        {
+            var result = await _userService.GetCurrentUser(token);
+
+            return Ok(result);
+        }
     }
 }

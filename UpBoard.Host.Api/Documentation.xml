@@ -76,6 +76,21 @@
             <param name="cancellation"></param>
             <returns></returns>
         </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.Login(Board.Contracts.User.LoginUserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Логин пользователя
+            </summary>
+            <param name="request"></param>
+            <param name="Canctoken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.GetCurentUser(System.Threading.CancellationToken)">
+            <summary>
+            Получение авторизованного пользователя
+            </summary>
+            <param name="token">Токен отмены</param>
+            <returns>Информация об авторизованном пользователе</returns>
+        </member>
         <member name="M:Doska.API.Controllers.CategoryController.GetAll">
             <summary>
             Получение всех категорий
