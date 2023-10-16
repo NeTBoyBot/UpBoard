@@ -52,7 +52,7 @@ namespace Board.Host.Api.Controllers
         /// <param name="cancellationToken">Токен отмены.</param>
         /// <response code="200">Запрос выполнен успешно.</response>
         /// <returns>Файл в виде потока.</returns>
-        [HttpGet("download/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Download(Guid id, CancellationToken cancellationToken)

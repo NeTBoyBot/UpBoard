@@ -51,7 +51,7 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор категории</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("category/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCategoryById(Guid id, CancellationToken cancellation)
         {
