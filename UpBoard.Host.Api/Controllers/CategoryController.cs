@@ -7,6 +7,7 @@ using UpBoard.Contracts.Category;
 
 namespace Doska.API.Controllers
 {
+    [Route("category")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace Doska.API.Controllers
         /// Получение всех категорий
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/allCategories")]
+        [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -35,7 +36,7 @@ namespace Doska.API.Controllers
         /// </summary>
         /// <param name="id">Идентификатор категории</param>
         /// <returns></returns>
-        [HttpGet("/allChildCategories")]
+        [HttpGet("subcategories/{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllChildCategories(Guid id)
         {
@@ -50,13 +51,11 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор категории</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("/CategoryById")]
+        [HttpGet("category/{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetCategoryById(Guid id,CancellationToken cancellation)
+        public async Task<IActionResult> GetCategoryById(Guid id, CancellationToken cancellation)
         {
-            
-
-            var result = await _categoryService.GetByIdAsync(id,cancellation);
+            var result = await _categoryService.GetByIdAsync(id, cancellation);
 
             return Ok(result);
         }
@@ -67,12 +66,12 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для создания категории</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpPost("/createCategory")]
+        [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> CreateCategory([FromBody]CreateCategoryRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryRequest request, CancellationToken cancellation)
         {
 
-            var result = await _categoryService.CreateCategoryAsync(request,cancellation);
+            var result = await _categoryService.CreateCategoryAsync(request, cancellation);
 
             return Created("", result);
         }
@@ -83,12 +82,12 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для изменения категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("/updateCategory")]
+        [HttpPut]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryRequest request, CancellationToken cancellation)
         {
 
-            var result = await _categoryService.EditCategoryAsync(request,cancellation);
+            var result = await _categoryService.EditCategoryAsync(request, cancellation);
 
             return Ok(result);
         }
@@ -99,13 +98,13 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для удаления категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteCategory")]
+        [HttpDelete]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd(DeleteCategoryRequest request, CancellationToken cancellation)
         {
 
-            await _categoryService.DeleteAsync(request,cancellation);
+            await _categoryService.DeleteAsync(request, cancellation);
             return Ok();
         }
     }

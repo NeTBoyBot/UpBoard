@@ -7,6 +7,7 @@ using UpBoard.Contracts.FavoriteAd;
 
 namespace Doska.API.Controllers
 {
+    [Route("favoritead")]
     [ApiController]
     public class FavoriteAdController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace Doska.API.Controllers
         /// Получение всех избранных объявлений
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/FavoriteAds")]
+        [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -36,11 +37,11 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для создания избранного объявления</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpPost("/createFavoriteAd")]
+        [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateAd([FromQuery]CreateFavoriteAdRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateAd([FromQuery] CreateFavoriteAdRequest request, CancellationToken cancellation)
         {
-            var result = await _favoriteadService.CreateFavoriteAdAsync(request,cancellation);
+            var result = await _favoriteadService.CreateFavoriteAdAsync(request, cancellation);
 
             return Created("", result);
         }
@@ -51,12 +52,12 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для удаления избранного объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteFavoriteAd")]
+        [HttpDelete]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> DeleteAd([FromQuery]DeleteFavoriteAdRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> DeleteAd([FromQuery] DeleteFavoriteAdRequest request, CancellationToken cancellation)
         {
-            await _favoriteadService.DeleteAsync(request,cancellation);
+            await _favoriteadService.DeleteAsync(request, cancellation);
             return Ok();
         }
 
@@ -66,11 +67,11 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор пользователя</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        [HttpGet("/allUserFavorites")]
+        [HttpGet("favorites/{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllUserFavorites(Guid id, CancellationToken token)
         {
-            var result = await _favoriteadService.GetAllUserFavorites(id,token);
+            var result = await _favoriteadService.GetAllUserFavorites(id, token);
 
             return Ok(result);
         }

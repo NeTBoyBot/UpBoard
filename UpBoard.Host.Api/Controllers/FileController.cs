@@ -10,7 +10,7 @@ namespace Board.Host.Api.Controllers
     /// Контроллер для работы с файлами
     /// </summary>
     [ApiController]
-    [Route("File")]
+    [Route("file")]
     public class FileController : ControllerBase
     {
         private readonly IFileService _fileService;
@@ -30,7 +30,7 @@ namespace Board.Host.Api.Controllers
         /// <returns></returns>
         [RequestFormLimits(ValueLengthLimit = int.MaxValue, MultipartBodyLengthLimit = long.MaxValue)]
         [DisableRequestSizeLimit]
-        [HttpPost("Upload")]
+        [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
         {
@@ -52,7 +52,7 @@ namespace Board.Host.Api.Controllers
         /// <param name="cancellationToken">Токен отмены.</param>
         /// <response code="200">Запрос выполнен успешно.</response>
         /// <returns>Файл в виде потока.</returns>
-        [HttpGet("Download/{id}")]
+        [HttpGet("download/{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Download(Guid id, CancellationToken cancellationToken)
@@ -64,7 +64,7 @@ namespace Board.Host.Api.Controllers
                 return NotFound();
             }
 
-            
+
             return File(result.Data, result.ContentType, result.Name, true);
         }
 

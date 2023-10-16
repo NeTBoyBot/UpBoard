@@ -6,6 +6,7 @@ using UpBoard.Contracts.Comment;
 
 namespace Doska.API.Controllers
 {
+    [Route("comment")]
     [ApiController]
     public class CommentController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace Doska.API.Controllers
         /// </summary>
         /// <param name="skip"></param>
         /// <returns></returns>
-        [HttpGet("/allComments")]
+        [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -36,11 +37,11 @@ namespace Doska.API.Controllers
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("/CommentsForUser")]
+        [HttpGet("comments/{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCommentsForUser(Guid userId, CancellationToken cancellation)
         {
-            var result = await _commentService.GetAllCommentsForUser(userId,cancellation);
+            var result = await _commentService.GetAllCommentsForUser(userId, cancellation);
 
             return Ok(result);
         }
@@ -51,12 +52,12 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для создания комментария</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpPost("/createComment")]
+        [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateComment([FromQuery]CreateCommentRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateComment([FromQuery] CreateCommentRequest request, CancellationToken cancellation)
         {
 
-            var result = await _commentService.CreateCommentAsync(request,cancellation);
+            var result = await _commentService.CreateCommentAsync(request, cancellation);
 
             return Created("", result);
         }
@@ -67,12 +68,12 @@ namespace Doska.API.Controllers
         /// <param name="request">Данные для удаления комментария</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpDelete("/deleteComment")]
+        [HttpDelete]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> DeleteComment([FromQuery]DeleteCommentRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> DeleteComment([FromQuery] DeleteCommentRequest request, CancellationToken cancellation)
         {
-            await _commentService.DeleteAsync(request,cancellation);
+            await _commentService.DeleteAsync(request, cancellation);
             return Ok();
         }
     }

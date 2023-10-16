@@ -11,6 +11,7 @@ namespace UpBoard.Host.Api.Controllers
     /// <summary>
     /// Контроллер для работы с пользователями
     /// </summary>
+    [Route("user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -25,7 +26,7 @@ namespace UpBoard.Host.Api.Controllers
         /// Получение всех пользователей
         /// </summary>
         /// <returns></returns>
-        [HttpGet("Users")]
+        [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoUserResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -40,11 +41,11 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для создания пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPost("Register")]
+        [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<Guid>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> RegisterUser([FromQuery]RegisterUserRequest request,CancellationToken cancellation)
+        public async Task<IActionResult> RegisterUser([FromQuery] RegisterUserRequest request, CancellationToken cancellation)
         {
-            var result = await _userService.CreateUserAsync(request,cancellation);
+            var result = await _userService.CreateUserAsync(request, cancellation);
 
             return Ok(result);
         }
@@ -55,9 +56,9 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для изменения пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("/updateUser")]
+        [HttpPut]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoUserResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> UpdateCategory([FromQuery]EditUserRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> UpdateCategory([FromQuery] EditUserRequest request, CancellationToken cancellation)
         {
 
             var result = await _userService.EditUserAsync(request, cancellation);
@@ -71,10 +72,10 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для удаления пользователя</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteUser")]
+        [HttpDelete]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> DeleteAd([FromQuery]DeleteUserRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> DeleteAd([FromQuery] DeleteUserRequest request, CancellationToken cancellation)
         {
 
             await _userService.DeleteAsync(request, cancellation);
@@ -87,7 +88,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request"></param>
         /// <param name="Canctoken"></param>
         /// <returns></returns>
-        [HttpPost("/Login")]
+        [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Login(LoginUserRequest request, CancellationToken Canctoken)
         {
@@ -99,7 +100,7 @@ namespace UpBoard.Host.Api.Controllers
         /// </summary>
         /// <param name="token">Токен отмены</param>
         /// <returns>Информация об авторизованном пользователе</returns>
-        [HttpGet("/CurrentUser")]
+        [HttpGet("current")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoUserResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCurentUser(CancellationToken token)
         {

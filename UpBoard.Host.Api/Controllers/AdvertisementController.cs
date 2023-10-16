@@ -9,6 +9,7 @@ using UpBoard.Contracts.Category;
 
 namespace UpBoard.Host.Api.Controllers
 {
+    [Route("advertisement")]
     [ApiController]
     public class AdvertisementController : ControllerBase
     {
@@ -23,7 +24,7 @@ namespace UpBoard.Host.Api.Controllers
         /// Получение всех объявлений для страницы
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/allAdsForPage")]
+        [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllForPage(int pageSize, int pageIndex)
         {
@@ -39,7 +40,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="id"></param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpGet("/AdById")]
+        [HttpGet("/{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAdById(Guid id, CancellationToken cancellation)
         {
@@ -53,7 +54,7 @@ namespace UpBoard.Host.Api.Controllers
         /// </summary>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPost("/createAd")]
+        [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateAd([FromBody] CreateAdvertisementRequest request, CancellationToken cancellation)
         {
@@ -68,7 +69,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для создания категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("/updateAd")]
+        [HttpPut("/{id}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory([FromQuery] UpdateAdRequest request, CancellationToken cancellation)
         {
@@ -84,7 +85,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для удаления категории</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("/deleteAd")]
+        [HttpDelete("/{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery] DeleteAdRequest request, CancellationToken cancellation)
