@@ -13,6 +13,7 @@ namespace UpBoard.Infrastructure.DataAccess.Contexts.Advertisement
         public void Configure(EntityTypeBuilder<Domain.Advertisement> builder)
         {
             builder.HasKey(a => a.Id);
+            builder.Property(a=>a.Id).ValueGeneratedOnAdd();
             builder.Property(a=>a.Description).HasMaxLength(256).IsRequired();
             builder.Property(a => a.Name).HasMaxLength(50).IsRequired();
             builder.Property(a => a.Price).IsRequired();

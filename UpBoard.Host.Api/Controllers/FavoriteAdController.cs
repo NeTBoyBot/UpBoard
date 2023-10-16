@@ -39,7 +39,7 @@ namespace Doska.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateAd([FromQuery] CreateFavoriteAdRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateAd([FromBody] CreateFavoriteAdRequest request, CancellationToken cancellation)
         {
             var result = await _favoriteadService.CreateFavoriteAdAsync(request, cancellation);
 

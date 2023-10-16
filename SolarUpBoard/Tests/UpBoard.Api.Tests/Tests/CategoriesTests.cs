@@ -30,7 +30,7 @@ namespace UpBoard.Api.Tests.Tests
             var id = DataSeedHelper.TestCategoryId;
 
             // Act
-            var response = await httpClient.GetAsync($"/CategoryById?id={id}");
+            var response = await httpClient.GetAsync($"/category/{id}");
 
             // Assert
 
@@ -58,7 +58,7 @@ namespace UpBoard.Api.Tests.Tests
 
             // Act
             HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync("/createCategory", content);
+            var response = await httpClient.PostAsync("/category", content);
 
             // Assert
             Assert.NotNull(response);

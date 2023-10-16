@@ -43,11 +43,11 @@ namespace UpBoard.Host.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<Guid>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> RegisterUser([FromQuery] RegisterUserRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterUserRequest request, CancellationToken cancellation)
         {
             var result = await _userService.CreateUserAsync(request, cancellation);
 
-            return Ok(result);
+            return Created("",result);
         }
 
         /// <summary>

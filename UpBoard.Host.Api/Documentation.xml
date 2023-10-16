@@ -29,15 +29,15 @@
             <summary>
             Обновление категории
             </summary>
-            <param name="request">Данные для создания категории</param>
+            <param name="request">Данные для создания объявления</param>
             <param name="cancellation"></param>
             <returns></returns>
         </member>
         <member name="M:UpBoard.Host.Api.Controllers.AdvertisementController.DeleteAd(UpBoard.Contracts.Ad.DeleteAdRequest,System.Threading.CancellationToken)">
             <summary>
-            Удаление категории
+            Удаление объявления
             </summary>
-            <param name="request">Данные для удаления категории</param>
+            <param name="request">Данные для удаления объявления</param>
             <param name="cancellation"></param>
             <returns></returns>
         </member>

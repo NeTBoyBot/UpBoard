@@ -54,7 +54,7 @@ namespace Doska.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateComment([FromQuery] CreateCommentRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> CreateComment([FromBody] CreateCommentRequest request, CancellationToken cancellation)
         {
 
             var result = await _commentService.CreateCommentAsync(request, cancellation);

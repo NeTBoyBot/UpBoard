@@ -66,7 +66,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <summary>
         /// Обновление категории
         /// </summary>
-        /// <param name="request">Данные для создания категории</param>
+        /// <param name="request">Данные для создания объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
@@ -80,9 +80,9 @@ namespace UpBoard.Host.Api.Controllers
         }
 
         /// <summary>
-        /// Удаление категории
+        /// Удаление объявления
         /// </summary>
-        /// <param name="request">Данные для удаления категории</param>
+        /// <param name="request">Данные для удаления объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]

@@ -30,6 +30,7 @@ namespace UpBoard.Infrastructure.DataAccess.Contexts.Advertisement
         public Task<Guid> AddAsync(CreateAdvertisementRequest model, CancellationToken cancellation)
         {
             var ad = _mapper.Map<Domain.Advertisement>(model);
+            ad.Id = Guid.NewGuid();
             _baseRepository.AddAsync(ad, cancellation);
 
             return Task.Run(()=> ad.Id);

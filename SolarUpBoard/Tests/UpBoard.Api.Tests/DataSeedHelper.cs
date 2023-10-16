@@ -9,6 +9,8 @@ namespace Board.Api.Tests
         public static Guid TestAdvertId { get; set; }
         public static Guid TestCategoryId { get; set; }
         public static Guid TestUserId { get; set; }
+        public static Guid TestCommentId { get; set; }
+        public static Guid TestFavoriteAdId { get; set; }
 
         public static void InitializeDbForTests(UpBoardDbContext db)
         {
@@ -22,13 +24,14 @@ namespace Board.Api.Tests
 
             var advert = new Advertisement
             {
+                Id=Guid.NewGuid(),
                 Name = "test_advert_name",
                 Description = "test_desc",
                 CreationDate = DateTime.UtcNow,
                 CategoryId = testCategory.Id
             };
+            TestAdvertId = advert.Id;
 
-           
             db.Add(advert);
 
             var testUser = new User
@@ -45,9 +48,34 @@ namespace Board.Api.Tests
             TestUserId = testUser.Id;
             db.Add(testUser);
 
+            var testComment = new Comment
+            {
+                Id = Guid.NewGuid(),
+                Sender = testUser,
+                SenderId = TestUserId,
+                Text = "test_message",
+                User = testUser,
+                UserId = Guid.NewGuid()
+
+            };
+            TestCommentId = testComment.Id;
+            db.Add(testComment);
+
+            var testFavoriteAd = new FavoriteAd
+            {
+                Id = Guid.NewGuid(),
+                Ad = advert,
+                AdvertisementId = advert.Id,
+                User = testUser,
+                UserId = testUser.Id
+
+            };
+            TestFavoriteAdId = testComment.Id;
+            db.Add(testFavoriteAd);
+
             db.SaveChanges();
 
-            TestAdvertId = advert.Id;
+            
         }
     }
 }
