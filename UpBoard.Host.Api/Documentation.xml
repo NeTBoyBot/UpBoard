@@ -52,6 +52,14 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Получение пользователя по Id
+            </summary>
+            <param name="id">Id пользователя</param>
+            <param name="cancellation">Токен отмены</param>
+            <returns></returns>
+        </member>
         <member name="M:UpBoard.Host.Api.Controllers.UserController.RegisterUser(Board.Contracts.User.RegisterUserRequest,System.Threading.CancellationToken)">
             <summary>
             Регистрация пользователя
