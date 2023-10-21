@@ -37,7 +37,7 @@ namespace Doska.API.Controllers
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("comments/{id}")]
+        [HttpGet("comments/{id:guid}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCommentResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCommentsForUser(Guid userId, CancellationToken cancellation)
         {

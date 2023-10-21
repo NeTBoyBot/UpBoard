@@ -36,7 +36,7 @@ namespace Doska.API.Controllers
         /// </summary>
         /// <param name="id">Идентификатор категории</param>
         /// <returns></returns>
-        [HttpGet("subcategories/{id}")]
+        [HttpGet("subcategories/{id:guid}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllChildCategories(Guid id)
         {
@@ -51,7 +51,7 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор категории</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCategoryById(Guid id, CancellationToken cancellation)
         {

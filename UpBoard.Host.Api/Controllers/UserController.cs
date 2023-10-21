@@ -42,7 +42,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="id">Id пользователя</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id,CancellationToken cancellation)
         {
             var result = await _userService.GetByIdAsync(id, cancellation);

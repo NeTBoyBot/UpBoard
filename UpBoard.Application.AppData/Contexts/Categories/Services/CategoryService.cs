@@ -74,7 +74,7 @@ namespace Doska.AppServices.Services.Ad
             _logger.LogInformation($"Поиск объявления под id: {id}");
 
             var existingCategory = await _categoryRepository.FindById(id,cancellation);
-            return _mapper.Map<InfoCategoryResponse>(existingCategory);
+            return existingCategory;
         }
 
         ///<inheritdoc/>

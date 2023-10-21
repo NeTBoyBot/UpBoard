@@ -24,7 +24,7 @@ namespace UpBoard.Host.Api.Controllers
         /// Получение всех объявлений для страницы
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("{pageSize:int},{pageIndex:int}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllForPage(int pageSize, int pageIndex)
         {
@@ -40,7 +40,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="id"></param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAdById(Guid id, CancellationToken cancellation)
         {
@@ -69,7 +69,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для создания объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory([FromQuery] UpdateAdRequest request, CancellationToken cancellation)
         {
@@ -85,7 +85,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для удаления объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery] DeleteAdRequest request, CancellationToken cancellation)
