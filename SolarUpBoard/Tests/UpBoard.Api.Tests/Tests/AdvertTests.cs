@@ -30,7 +30,7 @@ namespace UpBoard.Api.Tests.Tests
             var id = DataSeedHelper.TestAdvertId;
 
             // Act
-            var response = await httpClient.GetAsync($"/advertisement/{id}");
+            var response = await httpClient.GetAsync($"/post/{id}");
 
             // Assert
 
@@ -56,7 +56,7 @@ namespace UpBoard.Api.Tests.Tests
             var id = Guid.Empty;
 
             // Act
-            var response = await httpClient.GetAsync($"/advertisement/{id}");
+            var response = await httpClient.GetAsync($"/post/{id}");
 
             // Assert
 
@@ -82,7 +82,7 @@ namespace UpBoard.Api.Tests.Tests
 
             // Act
             HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync("/advertisement", content);
+            var response = await httpClient.PostAsync("/post", content);
 
             // Assert
             Assert.NotNull(response);

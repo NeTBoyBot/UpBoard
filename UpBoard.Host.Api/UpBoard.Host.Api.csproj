@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UpBoard.Application.AppData\UpBoard.Application.AppData.csproj" />
     <ProjectReference Include="..\UpBoard.Infrastructure.Registrar\UpBoard.Infrastructure.Registrar.csproj" />
   </ItemGroup>
 

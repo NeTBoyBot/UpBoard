@@ -9,7 +9,7 @@ using UpBoard.Contracts.Category;
 
 namespace UpBoard.Host.Api.Controllers
 {
-    [Route("advertisement")]
+    [Route("post")]
     [ApiController]
     public class AdvertisementController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace UpBoard.Host.Api.Controllers
         /// Получение всех объявлений для страницы
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{pageSize:int},{pageIndex:int}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoAdResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllForPage(int pageSize, int pageIndex)
         {
