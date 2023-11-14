@@ -51,7 +51,8 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity: class
         }
             
         await DbSet.AddAsync(model, cancellationToken);
-        await DbContext.SaveChangesAsync(cancellationToken);
+        Task.WaitAll(DbContext.SaveChangesAsync(cancellationToken));
+        
     }
 
     /// <inheritdoc />

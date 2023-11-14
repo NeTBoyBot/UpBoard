@@ -22,14 +22,20 @@ namespace Doska.DataAccess.Repositories
         }
 
         ///<inheritdoc/>
-        public Task<Guid> AddAsync(RegisterUserRequest model,CancellationToken cancellation)
+        public async Task<Guid> AddAsync(RegisterUserRequest model,CancellationToken cancellation)
         {
+            var current = (await _baseRepository.GetAllFiltered(u =>u.Email == model.Email || u.PhoneNumber == model.PhoneNumber)).FirstOrDefault();
+
+            if (current != null)
+                throw new Exception("User with this data is registered");
+
             var user = _mapper.Map<User>(model);
             user.Registrationdate = DateTime.UtcNow;
+            user.VerificationCode = new Random().Next(0, 10000);
 
             _baseRepository.AddAsync(user, cancellation);
 
-            return Task.Run(() => user.Id);
+            return user.Id;
         }
 
         ///<inheritdoc/>
@@ -40,10 +46,26 @@ namespace Doska.DataAccess.Repositories
         }
 
         ///<inheritdoc/>
-        public Task EditUserAsync(EditUserRequest edit, CancellationToken cancellation)
+        public async Task EditUserAsync(EditUserRequest edit, CancellationToken cancellation)
         {
-            var user = _mapper.Map<User>(edit);
-            return _baseRepository.UpdateAsync(user,cancellation);
+            var user = await _baseRepository.GetByIdAsync(edit.Id,cancellation);
+
+            user.PhoneNumber = edit.PhoneNumber;
+            user.Username = edit.Username;
+            user.Password = edit.Password;
+            user.Email = edit.Email;
+
+            await _baseRepository.UpdateAsync(user,cancellation);
+        }
+
+        public async Task VerifyUserAsync(Guid id,CancellationToken cancellation)
+        {
+            var user = await _baseRepository.GetByIdAsync(id, cancellation);
+
+            user.UserState = UpBoard.Domain.UserStates.UserStates.Verified;
+
+            await _baseRepository.UpdateAsync(user, cancellation);
+
         }
 
         ///<inheritdoc/>

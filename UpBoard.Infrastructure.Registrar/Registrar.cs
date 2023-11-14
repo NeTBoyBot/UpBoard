@@ -1,4 +1,5 @@
-﻿using Board.Infrastucture.DataAccess.Contexts.File;
+﻿using Board.Application.AppData.Contexts.Mail;
+using Board.Infrastucture.DataAccess.Contexts.File;
 using Board.Infrastucture.DataAccess.Interfaces;
 using Board.Infrastucture.Repository;
 using Doska.AppServices.Services.Ad;
@@ -51,6 +52,8 @@ namespace UpBoard.Infrastructure.Registrar
 
             services.AddTransient<IFileRepository, FileRepository>();
             services.AddTransient<IFileService, FileService>();
+
+            services.AddTransient<IMailService, MailService>();
 
             services.AddLogging();
 

@@ -70,7 +70,7 @@
         </member>
         <member name="M:UpBoard.Host.Api.Controllers.UserController.UpdateUser(Board.Contracts.User.EditUserRequest,System.Threading.CancellationToken)">
             <summary>
-            Обновление категории
+            Обновление пользователя
             </summary>
             <param name="request">Данные для изменения пользователя</param>
             <param name="cancellation"></param>
@@ -78,7 +78,7 @@
         </member>
         <member name="M:UpBoard.Host.Api.Controllers.UserController.DeleteAd(UpBoard.Contracts.User.DeleteUserRequest,System.Threading.CancellationToken)">
             <summary>
-            Удаление категории
+            Удаление пользователя
             </summary>
             <param name="request">Данные для удаления пользователя</param>
             <param name="cancellation"></param>
@@ -98,6 +98,15 @@
             </summary>
             <param name="token">Токен отмены</param>
             <returns>Информация об авторизованном пользователе</returns>
+        </member>
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.VerifyUser(System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Подтверждение аккаунта пользователя
+            </summary>
+            <param name="userId">ID пользователя для подтверждения</param>
+            <param name="Code">Код для подтверждения</param>
+            <param name="cancellation">Токен отмены</param>
+            <returns>Информация о том подтвержден ли аккаунт</returns>
         </member>
         <member name="M:Doska.API.Controllers.CategoryController.GetAll">
             <summary>
@@ -197,7 +206,7 @@
             <param name="cancellation"></param>
             <returns></returns>
         </member>
-        <member name="M:Doska.API.Controllers.FavoriteAdController.GetAllUserFavorites(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:Doska.API.Controllers.FavoriteAdController.GetAllUserFavorites(System.Threading.CancellationToken)">
             <summary>
             Получить все избранные объявления авторизованного пользователя
             </summary>

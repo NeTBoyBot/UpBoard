@@ -21,12 +21,6 @@ namespace Board.Contracts.User
         public string Username { get; set; }
 
         /// <summary>
-        /// Регион регистрации
-        /// </summary>
-        [Required]
-        public string Region { get; set; }
-
-        /// <summary>
         /// Номер телефона
         /// </summary>
         [Required]

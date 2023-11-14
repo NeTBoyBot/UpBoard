@@ -64,7 +64,7 @@ namespace UpBoard.AppServices.Services.Comment
         {
             _logger.LogInformation($"Получение всех комментариев пользователя под id {userId}");
 
-            return (await _commentRepository.GetAll()).Where(a => a.UserId == userId);
+            return (await _commentRepository.GetAll()).ToList().Where(a => a.UserId == userId).AsQueryable();
         }
 
         ///<inheritdoc/>

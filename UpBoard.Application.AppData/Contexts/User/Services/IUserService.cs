@@ -56,7 +56,16 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
         Task<InfoUserResponse> GetCurrentUser(CancellationToken cancellation);
 
         Task<string> Login(LoginUserRequest LoginUserRequest, CancellationToken cancellationToken);
-        
+
+        /// <summary>
+        /// Подтверждение аккаунта пользователя
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="VerificationCode"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<string> VerifyUserAsync(Guid id, int VerificationCode, CancellationToken cancellationToken);
+
 
     }
 }

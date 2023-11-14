@@ -147,5 +147,26 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
 
             return user;
         }
+
+        public async Task<string> VerifyUserAsync(Guid id, int VerificationCode, CancellationToken cancellationToken)
+        {
+            _logger.LogInformation($"Подтверждение аккаунта под id {id}");
+
+            var user = await _userRepository.FindById(id, cancellationToken);
+
+            if (user == null)
+                throw new Exception("Данного пользователя не существует!");
+
+            if (user.IsVerified)
+                throw new Exception("Аккаунт пользователя уже подтверждён");
+
+            if (user.VerificationCode.Equals(VerificationCode))
+            {
+                user.IsVerified = true;
+                await _userRepository.VerifyUserAsync(id, cancellationToken);
+            }
+
+            return "Аккаунт был успешно подтверждён";
+        }
     }
 }

@@ -41,6 +41,11 @@ namespace UpBoard.Domain
         /// </summary>
         public double Rating { get; set; }
 
+        /// <summary>
+        /// Код для подтверждения аккаунта пользователя
+        /// </summary>
+        public int VerificationCode { get; set; }
+
         public ICollection<Advertisement> Advertisements { get; set; }
         public ICollection<FavoriteAd> FavoriteAds { get; set; }
         public ICollection<Comment> RecievedComments { get; set; }

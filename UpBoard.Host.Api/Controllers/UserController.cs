@@ -1,10 +1,13 @@
-﻿using Board.Contracts.Category;
+﻿using Board.Application.AppData.Contexts.Mail;
+using Board.Contracts.Category;
 using Board.Contracts.User;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using System.Net;
 using UpBoard.Application.AppData.Contexts.User.Services;
 using UpBoard.Contracts.Category;
 using UpBoard.Contracts.User;
+using UpBoard.Domain;
 
 namespace UpBoard.Host.Api.Controllers
 {
@@ -16,10 +19,12 @@ namespace UpBoard.Host.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMailService _mailService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService,IMailService mailService)
         {
             _userService = userService;
+            _mailService = mailService;
         }
 
         /// <summary>
@@ -63,11 +68,15 @@ namespace UpBoard.Host.Api.Controllers
         {
             var result = await _userService.CreateUserAsync(request, cancellation);
 
+            var user = await _userService.GetByIdAsync(result, cancellation);
+
+            await _mailService.SendVerificationCodeAsync(user.Id, request.Email, user.VerificationCode, cancellation);
+
             return Created("",result);
         }
 
         /// <summary>
-        /// Обновление категории
+        /// Обновление пользователя
         /// </summary>
         /// <param name="request">Данные для изменения пользователя</param>
         /// <param name="cancellation"></param>
@@ -84,7 +93,7 @@ namespace UpBoard.Host.Api.Controllers
         }
 
         /// <summary>
-        /// Удаление категории
+        /// Удаление пользователя
         /// </summary>
         /// <param name="request">Данные для удаления пользователя</param>
         /// <param name="cancellation"></param>
@@ -127,5 +136,24 @@ namespace UpBoard.Host.Api.Controllers
 
             return Ok(result);
         }
+
+        /// <summary>
+        /// Подтверждение аккаунта пользователя
+        /// </summary>
+        /// <param name="userId">ID пользователя для подтверждения</param>
+        /// <param name="Code">Код для подтверждения</param>
+        /// <param name="cancellation">Токен отмены</param>
+        /// <returns>Информация о том подтвержден ли аккаунт</returns>
+        [HttpGet("/verify")]
+        public async Task<IActionResult> VerifyUser(Guid userId, int Code, CancellationToken cancellation)
+        {
+            var user = await _userService.GetCurrentUser(cancellation);
+            var result = await _userService.VerifyUserAsync(userId, Code, cancellation);
+
+            return Ok(result);
+        }
+
+
+
     }
 }

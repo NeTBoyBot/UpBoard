@@ -44,6 +44,6 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
         /// <param name="skip"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<IQueryable<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid id, CancellationToken token);
+        Task<IQueryable<InfoFavoriteAdResponse>> GetAllUserFavorites(CancellationToken token);
     }
 }

@@ -37,5 +37,10 @@ namespace Board.Contracts.User
         /// Является ли аккаунт пользователя подтверждённым
         /// </summary>
         public bool IsVerified { get; set; }
+
+        /// <summary>
+        /// Код для подтверждения аккаунта пользователя
+        /// </summary>
+        public int VerificationCode { get; set; }
     }
 }

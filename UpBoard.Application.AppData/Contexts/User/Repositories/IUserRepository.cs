@@ -57,7 +57,15 @@ namespace UpBoard.Application.AppData.Contexts.User.Repositories
         /// <param name="request"></param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        Task<InfoUserResponse> Login(LoginUserRequest request, CancellationToken cancellation); 
+        Task<InfoUserResponse> Login(LoginUserRequest request, CancellationToken cancellation);
+
+        /// <summary>
+        /// Верификация пользователя
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellation"></param>
+        /// <returns></returns>
+        Task VerifyUserAsync(Guid id, CancellationToken cancellation);
 
     }
 }

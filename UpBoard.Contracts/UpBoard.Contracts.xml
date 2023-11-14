@@ -199,6 +199,46 @@
             Дата создания файла
             </summary>
         </member>
+        <member name="P:Board.Contracts.Mail.InfoMailResponse.SenderMail">
+            <summary>
+            email отправителя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.InfoMailResponse.RecieverMail">
+            <summary>
+            email получателя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.InfoMailResponse.Subject">
+            <summary>
+            Содержимое темы письма
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.InfoMailResponse.Data">
+            <summary>
+            Содержимое письма
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.InfoMailResponse.IsSuccesfullySended">
+            <summary>
+            Успешно ли отправлено сообщение
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.SendMailRequest.RecieverMail">
+            <summary>
+            email получателя
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.SendMailRequest.Subject">
+            <summary>
+            Содержимое темы письма
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.Mail.SendMailRequest.Data">
+            <summary>
+            Содержимое письма
+            </summary>
+        </member>
         <member name="P:Board.Contracts.User.EditUserRequest.Id">
             <summary>
             Id пользователя
@@ -207,11 +247,6 @@
         <member name="P:Board.Contracts.User.EditUserRequest.Username">
             <summary>
             Имя пользователя
-            </summary>
-        </member>
-        <member name="P:Board.Contracts.User.EditUserRequest.Region">
-            <summary>
-            Регион регистрации
             </summary>
         </member>
         <member name="P:Board.Contracts.User.EditUserRequest.PhoneNumber">
@@ -257,6 +292,11 @@
         <member name="P:Board.Contracts.User.InfoUserResponse.IsVerified">
             <summary>
             Является ли аккаунт пользователя подтверждённым
+            </summary>
+        </member>
+        <member name="P:Board.Contracts.User.InfoUserResponse.VerificationCode">
+            <summary>
+            Код для подтверждения аккаунта пользователя
             </summary>
         </member>
         <member name="P:Board.Contracts.User.LoginUserRequest.Email">

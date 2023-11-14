@@ -67,11 +67,11 @@ namespace Doska.API.Controllers
         /// <param name="id">Идентификатор пользователя</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        [HttpGet("{id:guid}")]
+        [HttpGet("user/")]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoFavoriteAdResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetAllUserFavorites(Guid id, CancellationToken token)
+        public async Task<IActionResult> GetAllUserFavorites(CancellationToken token)
         {
-            var result = await _favoriteadService.GetAllUserFavorites(id, token);
+            var result = await _favoriteadService.GetAllUserFavorites(token);
 
             return Ok(result);
         }

@@ -57,11 +57,13 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
         }
 
         ///<inheritdoc/>
-        public async Task<IQueryable<InfoFavoriteAdResponse>> GetAllUserFavorites(Guid userId, CancellationToken token)
+        public async Task<IQueryable<InfoFavoriteAdResponse>> GetAllUserFavorites(CancellationToken token)
         {
+            var userId = (await _userService.GetCurrentUser(token)).Id;
+
             _logger.LogInformation($"Получение всех избранных объявлений пользователя под id {userId}");
 
-            return (await _favoriteadRepository.GetAll()).Where(a => a.UserId == userId);
+            return (await _favoriteadRepository.GetAll()).ToList().Where(a => a.UserId == userId).AsQueryable();
         }
 
         ///<inheritdoc/>
