@@ -13,16 +13,18 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
     ///<inheritdoc cref="IAdvertisementService"/>
     public class AdvertisementService : IAdvertisementService
     {
-        public readonly IAdvertisementRepository _adRepository;
-        public readonly IMapper _mapper;
-        public readonly ILogger<AdvertisementService> _logger;
+        private readonly IAdvertisementRepository _adRepository;
+        private readonly IMapper _mapper;
+        private readonly ILogger<AdvertisementService> _logger;
+        private readonly IUserService _userService;
 
         public AdvertisementService(IAdvertisementRepository adRepository, IMapper mapper,
-             ILogger<AdvertisementService> logger)
+             ILogger<AdvertisementService> logger, IUserService userService)
         {
             _adRepository = adRepository;
             _mapper = mapper;
             _logger = logger;
+            _userService = userService;
         }
 
         ///<inheritdoc/>
@@ -30,7 +32,14 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
         {
             _logger.LogInformation($"Создание объявления {SerializeObject(createAd)}");
 
-            var adId = await _adRepository.AddAsync(createAd, cancellation);
+            var user = (await _userService.GetCurrentUser(cancellation));
+            if (user == null)
+                throw new Exception("User is not Authorized!");
+
+            var userid = user.Id;
+
+
+            var adId = await _adRepository.AddAsync(createAd,userid, cancellation);
 
             return adId;
         }
@@ -40,6 +49,15 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
         {
             _logger.LogInformation($"Удаление объявления под Id: {request.Id}");
 
+            var user = (await _userService.GetCurrentUser(cancellation));
+            if (user == null)
+                throw new Exception("User is not Authorized!");
+
+            var ad = await _adRepository.FindById(request.Id, cancellation);
+
+            if (user.Id != ad.OwnerId)
+                throw new Exception("You are not owner of this advertisement!");
+
             await _adRepository.DeleteAsync(request, cancellation);
         }
 
@@ -47,6 +65,15 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Services
         public async Task<InfoAdResponse> EditAdAsync(UpdateAdRequest request, CancellationToken cancellation)
         {
             _logger.LogInformation($"Изменение объявления под Id: {request.Id}, {SerializeObject(request)}");
+
+            var user = (await _userService.GetCurrentUser(cancellation));
+            if (user == null)
+                throw new Exception("User is not Authorized!");
+
+            var ad = await _adRepository.FindById(request.Id, cancellation);
+
+            if (user.Id != ad.OwnerId)
+                throw new Exception("You are not owner of this advertisement!");
 
             await _adRepository.EditAdAsync(request, cancellation);
             

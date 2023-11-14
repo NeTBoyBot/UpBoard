@@ -69,7 +69,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для создания объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpPut("{id:guid}")]
+        [HttpPut()]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoCategoryResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateCategory([FromQuery] UpdateAdRequest request, CancellationToken cancellation)
         {
@@ -85,7 +85,7 @@ namespace UpBoard.Host.Api.Controllers
         /// <param name="request">Данные для удаления объявления</param>
         /// <param name="cancellation"></param>
         /// <returns></returns>
-        [HttpDelete("{id:guid}")]
+        [HttpDelete()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteAd([FromQuery] DeleteAdRequest request, CancellationToken cancellation)

@@ -26,7 +26,7 @@ namespace UpBoard.Contracts.Ad
         /// </summary>
         [MinLength(10)]
         [Required]
-        public string Desc { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Стоимость объявления

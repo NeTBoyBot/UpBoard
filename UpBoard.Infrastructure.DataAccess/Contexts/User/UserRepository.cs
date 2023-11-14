@@ -25,6 +25,7 @@ namespace Doska.DataAccess.Repositories
         public Task<Guid> AddAsync(RegisterUserRequest model,CancellationToken cancellation)
         {
             var user = _mapper.Map<User>(model);
+            user.Registrationdate = DateTime.UtcNow;
 
             _baseRepository.AddAsync(user, cancellation);
 

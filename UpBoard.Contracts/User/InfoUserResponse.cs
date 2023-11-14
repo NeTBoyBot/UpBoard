@@ -19,14 +19,9 @@ namespace Board.Contracts.User
         public string UserName { get; set; }
 
         /// <summary>
-        /// Регион регистрации
-        /// </summary>
-        public string Region { get; set; }
-
-        /// <summary>
         /// Номер телефона
         /// </summary>
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Адрес электронной почты
@@ -36,7 +31,7 @@ namespace Board.Contracts.User
         /// <summary>
         /// Дата создания аккаунта
         /// </summary>
-        public DateTime CreationTime { get; set; }
+        public DateTime Registrationdate { get; set; }
 
         /// <summary>
         /// Является ли аккаунт пользователя подтверждённым

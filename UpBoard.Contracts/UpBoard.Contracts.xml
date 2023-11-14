@@ -9,11 +9,6 @@
             Создание объявления
             </summary>
         </member>
-        <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.OwnerId">
-            <summary>
-            Id владельца объявления
-            </summary>
-        </member>
         <member name="P:Board.Contracts.Ad.CreateAdvertisementRequest.Name">
             <summary>
             Имя объявления
@@ -254,12 +249,7 @@
             Имя пользователя
             </summary>
         </member>
-        <member name="P:Board.Contracts.User.InfoUserResponse.Region">
-            <summary>
-            Регион регистрации
-            </summary>
-        </member>
-        <member name="P:Board.Contracts.User.InfoUserResponse.Phone">
+        <member name="P:Board.Contracts.User.InfoUserResponse.PhoneNumber">
             <summary>
             Номер телефона
             </summary>
@@ -269,7 +259,7 @@
             Адрес электронной почты
             </summary>
         </member>
-        <member name="P:Board.Contracts.User.InfoUserResponse.CreationTime">
+        <member name="P:Board.Contracts.User.InfoUserResponse.Registrationdate">
             <summary>
             Дата создания аккаунта
             </summary>
@@ -344,7 +334,7 @@
             Имя объявления
             </summary>
         </member>
-        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.Desc">
+        <member name="P:UpBoard.Contracts.Ad.UpdateAdRequest.Description">
             <summary>
             Описание объявления
             </summary>

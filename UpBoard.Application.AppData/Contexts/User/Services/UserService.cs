@@ -137,18 +137,17 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
             }
 
             //TODO
-            var result = new InfoUserResponse
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                CreationTime = user.CreationTime,
-                Email = user.Email,
-                Phone = user.Phone,
-                Region = user.Region,
-                IsVerified = user.IsVerified
-            };
+            //var result = new InfoUserResponse
+            //{
+            //    Id = user.Id,
+            //    UserName = user.UserName,
+            //    Registrationdate = user.Registrationdate,
+            //    Email = user.Email,
+            //    PhoneNumber = user.PhoneNumber,
+            //    IsVerified = user.IsVerified
+            //};
 
-            return result;
+            return user;
         }
     }
 }

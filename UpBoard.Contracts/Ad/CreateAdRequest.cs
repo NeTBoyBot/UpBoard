@@ -14,10 +14,10 @@ namespace Board.Contracts.Ad
     public class CreateAdvertisementRequest
     {
 
-        /// <summary>
-        /// Id владельца объявления
-        /// </summary>
-        public Guid OwnerId { get; set; }
+        ///// <summary>
+        ///// Id владельца объявления
+        ///// </summary>
+        //public Guid OwnerId { get; set; }
 
         /// <summary>
         /// Имя объявления

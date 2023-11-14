@@ -36,7 +36,7 @@ namespace Board.Api.Tests
 
             var testUser = new User
             {
-                Email = "test_mail",
+                Email = "user@example.com",
                 Id = Guid.NewGuid(),
                 Password = "test_password",
                 PhoneNumber = "+79789988777",

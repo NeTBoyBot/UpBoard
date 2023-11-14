@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Board.Api.Tests;
 using Board.Contracts.Ad;
+using Board.Contracts.User;
 using Newtonsoft.Json;
 using UpBoard.Domain;
 using Xunit;
@@ -75,13 +76,19 @@ namespace UpBoard.Api.Tests.Tests
             {
                 Name = "test_name",
                 Description = "test_description",
-                CategoryId = DataSeedHelper.TestCategoryId,
-                OwnerId = DataSeedHelper.TestUserId
+                CategoryId = DataSeedHelper.TestCategoryId
+                //OwnerId = DataSeedHelper.TestUserId
             };
 
+            var loginModel = JsonConvert.SerializeObject(new LoginUserRequest { Email = "user@example.com", Password = "stringst123" });
 
             // Act
+            HttpContent tokenContent = new StringContent(loginModel, Encoding.UTF8, "application/json");
+            var tokenRequest = await httpClient.PostAsync("/user/login", tokenContent);
+            var token = await tokenRequest.Content.ReadAsStringAsync();
+
             HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
             var response = await httpClient.PostAsync("/post", content);
 
             // Assert

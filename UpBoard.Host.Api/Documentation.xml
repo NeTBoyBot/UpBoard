@@ -68,7 +68,7 @@
             <param name="cancellation"></param>
             <returns></returns>
         </member>
-        <member name="M:UpBoard.Host.Api.Controllers.UserController.UpdateCategory(Board.Contracts.User.EditUserRequest,System.Threading.CancellationToken)">
+        <member name="M:UpBoard.Host.Api.Controllers.UserController.UpdateUser(Board.Contracts.User.EditUserRequest,System.Threading.CancellationToken)">
             <summary>
             Обновление категории
             </summary>

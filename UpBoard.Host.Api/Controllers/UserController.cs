@@ -75,7 +75,7 @@ namespace UpBoard.Host.Api.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(IReadOnlyCollection<InfoUserResponse>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateCategory([FromQuery] EditUserRequest request, CancellationToken cancellation)
+        public async Task<IActionResult> UpdateUser([FromQuery] EditUserRequest request, CancellationToken cancellation)
         {
 
             var result = await _userService.EditUserAsync(request, cancellation);
@@ -108,10 +108,10 @@ namespace UpBoard.Host.Api.Controllers
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Login(LoginUserRequest request, CancellationToken Canctoken)
+        public async Task<IActionResult> Login([FromBody]LoginUserRequest request, CancellationToken Canctoken)
         {
             var token = await _userService.Login(request, Canctoken);
-            return Created("", token);
+            return Ok(token);
         }
         /// <summary>
         /// Получение авторизованного пользователя

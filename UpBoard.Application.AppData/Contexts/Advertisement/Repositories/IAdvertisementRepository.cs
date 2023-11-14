@@ -30,7 +30,7 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Repositories
         /// <param name="model">ДТО создания объявления</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        Task<Guid> AddAsync(CreateAdvertisementRequest model, CancellationToken cancellation);
+        Task<Guid> AddAsync(CreateAdvertisementRequest model, Guid ownerId, CancellationToken cancellation);
 
         /// <summary>
         /// Удаление объявления
@@ -47,5 +47,6 @@ namespace UpBoard.Application.AppData.Contexts.Advertisement.Repositories
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         Task EditAdAsync(UpdateAdRequest request, CancellationToken cancellation);
+        
     }
 }

@@ -41,7 +41,7 @@ namespace UpBoard.Api.Tests.Tests
             Assert.NotNull(result);
 
             Assert.Equal("test_username", result!.UserName);
-            Assert.Equal("test_mail", result.Email);
+            Assert.Equal("user@example.com", result.Email);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 

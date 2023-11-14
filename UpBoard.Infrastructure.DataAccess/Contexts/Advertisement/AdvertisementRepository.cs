@@ -27,29 +27,35 @@ namespace UpBoard.Infrastructure.DataAccess.Contexts.Advertisement
         }
 
         ///<inheritdoc/>
-        public Task<Guid> AddAsync(CreateAdvertisementRequest model, CancellationToken cancellation)
+        public Task<Guid> AddAsync(CreateAdvertisementRequest model,Guid ownerId, CancellationToken cancellation)
         {
             var ad = _mapper.Map<Domain.Advertisement>(model);
             ad.Id = Guid.NewGuid();
+            ad.OwnerId = ownerId;
             _baseRepository.AddAsync(ad, cancellation);
 
             return Task.Run(()=> ad.Id);
         }
 
         ///<inheritdoc/>
-        public Task DeleteAsync(DeleteAdRequest request, CancellationToken cancellation)
+        public async Task DeleteAsync(DeleteAdRequest request, CancellationToken cancellation)
         {
-            var ad = _mapper.Map<Domain.Advertisement>(request);
+            var ad = await _baseRepository.GetByIdAsync(request.Id,cancellation);
 
-            return _baseRepository.DeleteAsync(ad, cancellation);
+            await _baseRepository.DeleteAsync(ad, cancellation);
         }
 
         ///<inheritdoc/>
-        public Task EditAdAsync(UpdateAdRequest request, CancellationToken cancellation)
+        public async Task EditAdAsync(UpdateAdRequest request, CancellationToken cancellation)
         {
-            var ad = _mapper.Map<Domain.Advertisement>(request);
+            var ad = await _baseRepository.GetByIdAsync(request.Id,cancellation);
 
-            return _baseRepository.UpdateAsync(ad, cancellation);
+            ad.Description = request.Description;
+            ad.Name = request.Name;
+            ad.CategoryId = request.CategoryId;
+            ad.Price = request.Price;
+
+            _baseRepository.UpdateAsync(ad, cancellation);
         }
 
         ///<inheritdoc/>
