@@ -31,7 +31,7 @@ namespace UpBoard.Application.AppData.Contexts.Comment.Repositories
         /// <param name="request">ДТО комментария</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        Task<Guid> AddAsync(CreateCommentRequest request, CancellationToken cancellation);
+        Task<Guid> AddAsync(CreateCommentRequest request,Guid senderId, CancellationToken cancellation);
 
         /// <summary>
         /// Удаление комментария

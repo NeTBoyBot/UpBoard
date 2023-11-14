@@ -25,7 +25,7 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Repositories
         /// <param name="request">ДТО избранного объявления</param>
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
-        Task<Guid> AddAsync(CreateFavoriteAdRequest request, CancellationToken cancellation);
+        Task<Guid> AddAsync(CreateFavoriteAdRequest request,Guid userId, CancellationToken cancellation);
 
         /// <summary>
         /// Удаление избранного объявления

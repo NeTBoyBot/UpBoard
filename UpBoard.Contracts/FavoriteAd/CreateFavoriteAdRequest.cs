@@ -13,12 +13,6 @@ namespace Board.Contracts.FavoriteAd
     public class CreateFavoriteAdRequest
     {
         /// <summary>
-        /// ID пользователя добавившего объявление в избранные
-        /// </summary>
-        [Required]
-        public Guid UserId { set; get; }
-
-        /// <summary>
         /// ID Объявления
         /// </summary>
         [Required]

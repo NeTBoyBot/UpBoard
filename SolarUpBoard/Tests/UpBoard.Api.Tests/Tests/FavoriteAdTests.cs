@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UpBoard.Domain;
 using Board.Contracts.FavoriteAd;
+using Board.Contracts.User;
 
 namespace UpBoard.Api.Tests.Tests
 {
@@ -30,13 +31,19 @@ namespace UpBoard.Api.Tests.Tests
 
             var model = new CreateFavoriteAdRequest
             {
-                AdvertisementId = DataSeedHelper.TestAdvertId,
-                UserId = DataSeedHelper.TestUserId
+                AdvertisementId = DataSeedHelper.TestAdvertId
             };
 
 
+            var loginModel = JsonConvert.SerializeObject(new LoginUserRequest { Email = "user@example.com", Password = "test_password" });
+
             // Act
+            HttpContent tokenContent = new StringContent(loginModel, Encoding.UTF8, "application/json");
+            var tokenRequest = await httpClient.PostAsync("/user/login", tokenContent);
+            var token = await tokenRequest.Content.ReadAsStringAsync();
+
             HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
             var response = await httpClient.PostAsync("/favoritead", content);
 
             // Assert
@@ -51,7 +58,6 @@ namespace UpBoard.Api.Tests.Tests
             Assert.NotNull(advert);
 
             Assert.Equal(model.AdvertisementId, advert!.AdvertisementId);
-            Assert.Equal(model.UserId, advert.UserId);
         }
     }
 }

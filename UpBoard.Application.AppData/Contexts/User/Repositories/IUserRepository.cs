@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Board.Contracts.User;
 using UpBoard.Contracts.User;
+using System.Runtime.CompilerServices;
 
 namespace UpBoard.Application.AppData.Contexts.User.Repositories
 {
@@ -49,6 +50,14 @@ namespace UpBoard.Application.AppData.Contexts.User.Repositories
         /// <param name="cancellation">Токен отмены</param>
         /// <returns></returns>
         Task EditUserAsync(EditUserRequest model, CancellationToken cancellation);
+
+        /// <summary>
+        /// Метод для получения пользователя по логину и паролю
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellation"></param>
+        /// <returns></returns>
+        Task<InfoUserResponse> Login(LoginUserRequest request, CancellationToken cancellation); 
 
     }
 }

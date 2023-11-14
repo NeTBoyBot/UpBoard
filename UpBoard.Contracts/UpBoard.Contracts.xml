@@ -104,11 +104,6 @@
             ID Пользователя которому оставили отзыв
             </summary>
         </member>
-        <member name="P:Board.Contracts.Comment.CreateCommentRequest.SenderId">
-            <summary>
-            ID Пользователя который оставил отзыв
-            </summary>
-        </member>
         <member name="P:Board.Contracts.Comment.CreateCommentRequest.Text">
             <summary>
             Содержимое отзыва
@@ -137,11 +132,6 @@
         <member name="T:Board.Contracts.FavoriteAd.CreateFavoriteAdRequest">
             <summary>
             
-            </summary>
-        </member>
-        <member name="P:Board.Contracts.FavoriteAd.CreateFavoriteAdRequest.UserId">
-            <summary>
-            ID пользователя добавившего объявление в избранные
             </summary>
         </member>
         <member name="P:Board.Contracts.FavoriteAd.CreateFavoriteAdRequest.AdvertisementId">

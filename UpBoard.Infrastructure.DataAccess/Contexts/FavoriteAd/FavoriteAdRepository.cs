@@ -11,6 +11,7 @@ using AutoMapper;
 using Board.Contracts.FavoriteAd;
 using UpBoard.Contracts.FavoriteAd;
 using System.Text.Json.Serialization.Metadata;
+using UpBoard.Application.AppData.Contexts.User.Services;
 
 namespace Doska.DataAccess.Repositories
 {
@@ -27,9 +28,10 @@ namespace Doska.DataAccess.Repositories
         }
 
         ///<inheritdoc/>
-        public Task<Guid> AddAsync(CreateFavoriteAdRequest request, CancellationToken cancellation)
+        public Task<Guid> AddAsync(CreateFavoriteAdRequest request,Guid userId, CancellationToken cancellation)
         {
             var model = _mapper.Map<FavoriteAd>(request);
+            model.UserId = userId;
 
             _baseRepository.AddAsync(model,cancellation);
 

@@ -58,5 +58,18 @@ namespace Doska.DataAccess.Repositories
         {
             return (await _baseRepository.GetAll()).Select(u=>_mapper.Map< InfoUserResponse>(u));
         }
+
+        ///<inheritdoc/>
+        public async Task<InfoUserResponse> Login(LoginUserRequest request, CancellationToken cancellation)
+        {
+            var users = await _baseRepository.GetAllFiltered(u => u.Email == request.Email && u.Password == request.Password);
+
+            var user = users.FirstOrDefault();
+
+            if (user == null)
+                throw new Exception("User not found");
+
+            return _mapper.Map<InfoUserResponse>(user);
+        }
     }
 }

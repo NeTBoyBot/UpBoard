@@ -27,9 +27,10 @@ namespace Doska.DataAccess.Repositories
         }
 
         ///<inheritdoc/>
-        public Task<Guid> AddAsync(CreateCommentRequest model, CancellationToken cancellation)
+        public Task<Guid> AddAsync(CreateCommentRequest model,Guid senderId, CancellationToken cancellation)
         {
             var comment = _mapper.Map<Comment>(model);
+            comment.SenderId = senderId;
 
             _baseRepository.AddAsync(comment,cancellation);
 
@@ -37,11 +38,11 @@ namespace Doska.DataAccess.Repositories
         }
 
         ///<inheritdoc/>
-        public Task DeleteAsync(DeleteCommentRequest request, CancellationToken cancellation)
+        public async Task DeleteAsync(DeleteCommentRequest request, CancellationToken cancellation)
         {
-            var comment = _mapper.Map<Comment>(request);
+            var comment = await _baseRepository.GetByIdAsync(request.Id,cancellation);
 
-            return _baseRepository.DeleteAsync(comment,cancellation);
+            _baseRepository.DeleteAsync(comment,cancellation);
         }
 
         ///<inheritdoc/>

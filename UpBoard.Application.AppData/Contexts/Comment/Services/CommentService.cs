@@ -36,7 +36,9 @@ namespace UpBoard.AppServices.Services.Comment
         {
             _logger.LogInformation($"Создание комментария");
 
-            var commentId = await _commentRepository.AddAsync(createComment,cancellation);
+            var id = (await _userService.GetCurrentUser(cancellation)).Id;
+
+            var commentId = await _commentRepository.AddAsync(createComment,id,cancellation);
 
             return commentId;
         }

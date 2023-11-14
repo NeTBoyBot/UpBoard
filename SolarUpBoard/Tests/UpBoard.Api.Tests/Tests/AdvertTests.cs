@@ -80,7 +80,7 @@ namespace UpBoard.Api.Tests.Tests
                 //OwnerId = DataSeedHelper.TestUserId
             };
 
-            var loginModel = JsonConvert.SerializeObject(new LoginUserRequest { Email = "user@example.com", Password = "stringst123" });
+            var loginModel = JsonConvert.SerializeObject(new LoginUserRequest { Email = "user@example.com", Password = "test_password" });
 
             // Act
             HttpContent tokenContent = new StringContent(loginModel, Encoding.UTF8, "application/json");

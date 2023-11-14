@@ -17,12 +17,6 @@ namespace Board.Contracts.Comment
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// ID Пользователя который оставил отзыв
-        /// </summary>
-        [Required]
-        public Guid SenderId { get; set; }
-
-        /// <summary>
         /// Содержимое отзыва
         /// </summary>
         [MinLength(1)]

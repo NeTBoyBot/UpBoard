@@ -31,9 +31,11 @@ namespace UpBoard.Application.AppData.Contexts.FavoriteAd.Services
         public async Task<Guid> CreateFavoriteAdAsync(CreateFavoriteAdRequest createAd, CancellationToken cancellation)
         {
 
-            _logger.LogInformation($"Добавление объявления под id {createAd.AdvertisementId} в избранные пользователя под id {createAd.UserId}");
+            var id = (await _userService.GetCurrentUser(cancellation)).Id;
 
-            var adId = await _favoriteadRepository.AddAsync(createAd, cancellation);
+            _logger.LogInformation($"Добавление объявления под id {createAd.AdvertisementId} в избранные пользователя под id {id}");
+
+            var adId = await _favoriteadRepository.AddAsync(createAd,id, cancellation);
 
             return adId;
         }

@@ -85,9 +85,7 @@ namespace UpBoard.Application.AppData.Contexts.User.Services
 
         public async Task<string> Login(LoginUserRequest request, CancellationToken cancellationToken)
         {
-            InfoUserResponse existingUser = (await _userRepository.GetAll())
-                .ToList()
-                .First(user => user.Email == request.Email);
+            InfoUserResponse existingUser = await _userRepository.Login(request,cancellationToken);
 
             if (existingUser == null)
                 throw new InvalidOperationException($"Пользователя с почтой '{request.Email}' не существует");
